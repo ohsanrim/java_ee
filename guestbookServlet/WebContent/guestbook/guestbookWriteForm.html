@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title >글쓰기</title>
+<style>
+   table {
+   background-color:white;
+   border:1px solid gray;
+   Font-Family: 맑은 고딕;
+   }
+   tr, td{
+      border:1px solid gray;
+      height:30px;
+   }
+  
+  </style>
+</head>
+<body>
+
+<h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;글쓰기</h3>
+<form name="guestForm" method="post" action="/guestbookServlet/GuestbookWriteServlet">  
+<table border="1" >
+      <tr>
+         <td style="width:80px; height:30px;" align="center">작성자</td>
+         <td style="width:400px;"><input type="text" name='name' id="name" placeholder="작성자 입력"></td>
+      </tr>
+      <tr>
+         <td style="width:80px; height:30px;" align="center">이메일</td>
+         <td><input type="text" name='email' id="email" placeholder="이메일 입력"></td>
+      </tr>
+      <tr>
+         <td style="width:80px; height:30px;" align="center">홈페이지</td>
+         <td><input type="text" name='homepage' id="homepage" value="http://"></td>
+      </tr>
+      <tr>
+         <td style="width:80px; height:30px;" align="center"><font color='red'>*</font>제목</td>
+         <td><input type="text" name="subject" id="subject" placeholder="제목 입력"></td>
+      </tr>
+      <tr>
+         <td style="width:80px; height:30px;" align="center"><font color='red'>*</font>내용</td>
+         <td><textarea name="content" id="content"rows="12" cols="52"  style="resize:none;"  placeholder="내용을 입력"></textarea></td>
+      </tr>
+      <tr>
+         <td colspan="2" align="center"><input type="button" value="글작성" onclick="checkGuestForm()"> &emsp; 
+   <input type="reset" value="다시작성"> &emsp; <input type="button" value="글목록" onclick="checkListForm()"></td>
+      </tr>
+   </table>
+</form>
+<form name="listForm" action="/guestbookServlet/GuestbookListServlet"></form>
+
+</body>
+<script src="http://localhost:8080/guestbookServlet/js/guest.js"></script>
+
+
+
+</html>

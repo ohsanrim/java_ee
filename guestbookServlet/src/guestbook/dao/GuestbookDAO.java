@@ -11,7 +11,7 @@ import guestbook.bean.GuestbookDTO;
 
 
 public class GuestbookDAO {
-public static GuestbookDAO instance;  //싱글톤이기 때문에 선언할 때 instance라고 많이 선언함
+private static GuestbookDAO instance;  //싱글톤이기 때문에 선언할 때 instance라고 많이 선언함
 	
 	private String driver = "oracle.jdbc.driver.OracleDriver";
 	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -71,12 +71,14 @@ public static GuestbookDAO instance;  //싱글톤이기 때문에 선언할 때 
 		}
 		return su;
 	}
-	public ArrayList <GuestbookDTO> selectAll() {
-		String sql="select seq,name,email,homepage,subject,content, to_char(logtime,'YYYY.MM.DD') as logtime from guestbook order by seq desc";
+	public ArrayList <GuestbookDTO> selectAll(int startNum , int endNum) {
+		String sql="select * from (select rownum rn, tt.* from (select seq,name,email,homepage,subject,content, to_char(logtime,'YYYY.MM.DD') as logtime from guestbook order by seq desc)tt) where rn>=? and rn<=?";
 		ArrayList <GuestbookDTO> ar = new ArrayList<GuestbookDTO>();
 		this.getConnection();
 		try{
-			  pstmt=conn.prepareStatement(sql);
+			  pstmt=conn.prepareStatement(sql); 
+			  pstmt.setInt(1,startNum);
+			  pstmt.setInt(2,endNum);
 			  rs=pstmt.executeQuery();
 			  while(rs.next()){
 				  GuestbookDTO guestbookDTO = new GuestbookDTO();
@@ -95,7 +97,7 @@ public static GuestbookDAO instance;  //싱글톤이기 때문에 선언할 때 
 		return ar;
 	}
 	//생성자
-	private GuestbookDAO(){
+	public GuestbookDAO(){
 		try {
 			Class.forName(driver); // 드라이버 생성
 		} catch (ClassNotFoundException e) {
@@ -111,5 +113,26 @@ public static GuestbookDAO instance;  //싱글톤이기 때문에 선언할 때 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	public int getTotalA() {
+		int totalA=0;
+		String sql="select count(*) as count from guestbook";
+		this.getConnection();
+		try{
+			  pstmt=conn.prepareStatement(sql); 
+			  rs=pstmt.executeQuery();
+			  rs.next();
+			  totalA= rs.getInt("count");
+			  } catch(SQLException e) {
+			 e.printStackTrace();
+			  } finally {
+					try {
+						if(pstmt!=null) pstmt.close();
+						if(conn!=null)conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+		return totalA;
 	}
 }

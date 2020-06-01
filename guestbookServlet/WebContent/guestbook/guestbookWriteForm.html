@@ -39,7 +39,7 @@
       </tr>
       <tr>
          <td style="width:80px; height:30px;" align="center"><font color='red'>*</font>내용</td>
-         <td><textarea name="content" id="content"rows="12" cols="52"  style="resize:none;"  placeholder="내용을 입력"></textarea></td>
+         <td style=""word_wrap:break-word;  word-break: break-all;><textarea name="content" id="content"rows="12" cols="52"  placeholder="내용을 입력"></textarea></td>
       </tr>
       <tr>
          <td colspan="2" align="center"><input type="button" value="글작성" onclick="checkGuestForm()"> &emsp; 
@@ -47,10 +47,12 @@
       </tr>
    </table>
 </form>
-<form name="listForm" action="/guestbookServlet/GuestbookListServlet"></form>
+<form name="listForm" method="get" action="/guestbookServlet/GuestbookListServlet">
+	<input type="hidden" name="pg" value="1">
+</form>
 
 </body>
-<script src="http://localhost:8080/guestbookServlet/js/guest.js"></script>
+<script src="http://localhost:8080/guestbookServlet/js/guest.js?ver=2"></script>
 
 
 

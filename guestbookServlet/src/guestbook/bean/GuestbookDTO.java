@@ -1,5 +1,8 @@
 package guestbook.bean;
 
+import lombok.Data;
+
+@Data
 public class GuestbookDTO {
 		public int seq;
 		public String name;

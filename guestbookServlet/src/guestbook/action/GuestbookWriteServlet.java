@@ -12,6 +12,7 @@ import guestbook.dao.GuestbookDAO;
 
 //@WebServlet("/LoginServlet")
 public class  GuestbookWriteServlet extends HttpServlet {
+	//submit을 해주면 name 속성만을 들고오게 된다. 
 	private static final long serialVersionUID = 1L;
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -44,9 +45,10 @@ public class  GuestbookWriteServlet extends HttpServlet {
 		
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<form name='writebookServlet' action='/guestbookServlet/GuestbookListServlet'>");
+		out.println("<form name='writebookServlet' action='/guestbookServlet/GuestbookListServlet?pg=1'>");
 		out.println("작성하신 글을 저장하였습니다.");
 		out.println("<input type='button' value='글목록' onclick='listForm()'>");
+		out.println("<input type='hidden' name='pg' value='1' >");
 		out.println("</form>");
 		out.println("</body>");
 		//out.println("<script>function guestlistForm(){ location.href='http://localhost:8080/guestbookServlet/GuestbookListServlet'}</script>");

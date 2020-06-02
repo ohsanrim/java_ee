@@ -95,8 +95,8 @@ public class GuestbookListServlet extends HttpServlet {
 			out.println("</tr>");
 			//5번째
 			out.println("<tr>");
-			//out.println("<td style='width:500px; height:80px; word_wrap:break-word;  word-break: break-all;'colspan='4'><pre>"+content+"</pre></td>");
-			out.println("<td style='width:500px; height:80px; word_wrap:break-word;  word-break: break-all; 'colspan='4'>"+content.replace("\r\n", "<br>")+"</td>");
+			out.println("<td style='width:500px; height:80px;' colspan='4'><pre style='white-space:pre-wrap; word_wrap:break-word; word-break: break-all;'>"+content+"</pre></td>");
+			//out.println("<td style='width:500px; height:80px; white-space:pre-wrap; word_wrap:break-word; word-break: break-all;  'colspan='4'>"+content+"</td>");
 			out.println("</tr>");
 			out.println("</table>");
 			//out.println("</div>");

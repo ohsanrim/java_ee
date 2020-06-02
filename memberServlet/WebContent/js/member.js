@@ -15,7 +15,7 @@ function checkWriteForm(){
     	  alert("비밀번호가 일치하지 않습니다.");
           document.writeForm.pwd.focus();
       } else  {
-    	  document.personForm.submit();
+    	  document.writeForm.submit();
       } 
    }
 

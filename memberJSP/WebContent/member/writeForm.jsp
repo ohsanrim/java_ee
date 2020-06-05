@@ -23,7 +23,7 @@
 <body>
 <div border="1">
 <h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;회원가입</h3>
-<form name="writeForm" method="post" action="">
+<form name="writeForm" method="post" action="writeResult.jsp">
 <table border="1" >
 		<tr>
 			<td style="width:80px; height:30px;" align="center"><font color='red'>*</font>이 름</td>
@@ -70,7 +70,7 @@
 		<td>주소</td>
 		<td>
 		<input type="text" name="zipcode" id="zipcode" size="7" readonly>
-		<input type="button" value="우편번호검색"name="addr1" onclick="checkPost()" ><br>
+		<input type="button" value="우편번호검색" onclick="checkPost().jsp" ><br>
 		<input type="text" name="addr1" id="addr1" style="width:350px;" placeholder="주소" readonly><br>
 		<input type="text" name="addr2" id ="addr2" style="width:350px;" placeholder="나머지주소" >
 		

@@ -1,0 +1,18 @@
+@charset "UTF-8";
+table, th, tr{
+	background-color:#fffce3;
+	border:1px solid #6633cc;
+	Font-Family: 궁서체;
+	color:#6633cc;
+	font-size:10pt;
+}
+td{
+font-size:8pt;
+}
+#addressA:link{ color:black;text-decoration:none; }
+#addressA:visited{ color:black;text-decoration:none; }
+#addressA:hover{ color:red;text-decoration:none; font-weight:bold;}
+#addressA:active{ color:black;text-decoration:none; }
+input, select{
+	 background-color:#faf6d4;
+	}

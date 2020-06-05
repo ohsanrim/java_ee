@@ -1,24 +1,37 @@
+<%@page import="member.bean.ZipcodeDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="member.dao.MemberDAO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%//데이터
+	request.setCharacterEncoding("UTF-8");
+	String sido = request.getParameter("sido");
+	String sigungu = request.getParameter("sigungu");
+	String roadname = request.getParameter("roadname");
+	System.out.println(sido +"/"+sigungu+"/"+roadname);
+	%>
+	<%//DB
+	ArrayList <ZipcodeDTO> list=new ArrayList<ZipcodeDTO>();
+	if(sido!=null&& roadname!=null){
+		MemberDAO memberDAO = MemberDAO.getInstance();
+		
+		list=memberDAO.getZipcodeList(sido, sigungu, roadname);
+		System.out.println(list.size());
+	}
+
+
+	%>
+	<% %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-table, th, tr{
-	background-color:#fffce3;
-	border:1px solid #6633cc;
-	Font-Family: 궁서체;
-	color:#6633cc;
-	font-size:10pt;
-}
-input, select{
-	 background-color:#faf6d4;
-	}
-</style>
+<link rel="stylesheet" href="../css/member.css">
 </head>
 <body>
+<form method="post" action="checkPost.jsp">
 	<table>
 		<tr>
 			<th style="width:100px;">시도</th>
@@ -48,13 +61,25 @@ input, select{
 		</tr>
 		<tr>
 			<th style="width:100px;">도로명</th>
-			<th align="left"colspan="3"><input type="text" name="roadname"><input type="button" value="검색"></th>
+			<th align="left"colspan="3"><input type="text" name="roadname"><input type="submit" value="검색" ></th>
 		</tr>
 		<tr>
 			<th style="width:100px;">우편번호</th>
 			<th colspan="3"  name="zipcode"> 주소 </th>
 		</tr>
+		<%if(list!=null) {%>
+			<%for(ZipcodeDTO zipcodeDTO :list) { String address = zipcodeDTO.getSido()+" " +zipcodeDTO.getSigungu()+" "+zipcodeDTO.getYubmyundong()+" "+zipcodeDTO.getRi()+" "+ zipcodeDTO.getRoadname()+" "+ zipcodeDTO.getBuildingname(); %>
+			<tr>
+			<td ><%=zipcodeDTO.getZipcode() %></td>
+			<td colspan="3"><a id="addressA" href="#" onclick="checkPostClose('<%=address%>','<%=zipcodeDTO.getZipcode()%>')"><%=address%></a></td>
+			</tr>
+			<%} %>
+		<%} %>
+		
+		
 	</table>
+	</form>
 </body>
+<Script type="text/javascript" src="http://localhost:8080/memberJSP/js/member.js?ver=3"></Script>
 
 </html>

@@ -1,8 +1,13 @@
 package member.bean;
 
+import lombok.Data;
+
+@Data
 public class LoginDTO {
+	
 	public String id;
 	public String pwd;
+	
 	public String getId() {
 		return id;
 	}

@@ -5,8 +5,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import member.bean.MemberDTO;
+import member.bean.ZipcodeDTO;
 
 public class MemberDAO {
 	private static MemberDAO instance;  //싱글톤이기 때문에 선언할 때 instance라고 많이 선언함
@@ -94,6 +96,72 @@ public class MemberDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	public ArrayList <ZipcodeDTO> getZipcodeList(String sido, String sigungu, String roadname){
+		ArrayList <ZipcodeDTO> list= new ArrayList<ZipcodeDTO> ();
+		String sql="select * from newzipcode where sido like ? and nvl(sigungu,0) like ? and roadname like ?";
+		this.getConnection();
+		try{
+			  pstmt=conn.prepareStatement(sql); 
+			  pstmt.setString(1,"%"+sido+"%");
+			  pstmt.setString(2,"%"+sigungu+"%");
+			  pstmt.setString(3,"%"+roadname+"%");
+			  rs=pstmt.executeQuery();
+			  
+			  while(rs.next()){
+				  ZipcodeDTO zipcodeDTO = new ZipcodeDTO();
+				  zipcodeDTO.setZipcode(rs.getString("zipcode"));
+				  zipcodeDTO.setSido(rs.getString("sido"));
+				  zipcodeDTO.setSigungu(rs.getString("sigungu")==null?"":rs.getString("sigungu"));
+				  zipcodeDTO.setYubmyundong(rs.getString("yubmyundong"));
+				  zipcodeDTO.setRi(rs.getString("ri")==null?"":rs.getString("ri"));
+				  zipcodeDTO.setRoadname(rs.getString("roadname"));
+				  zipcodeDTO.setBuildingname(rs.getString("buildingname")==null?"":rs.getString("buildingname"));
+				  list.add(zipcodeDTO);
+			  }
+			  } catch(SQLException e) {
+			 e.printStackTrace();
+			  } finally {
+					try {
+						if(pstmt!=null) pstmt.close();
+						if(conn!=null)conn.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+		return list;
+	}
+	public int modifyMember(MemberDTO memberDTO) {
+		int su =0;
+		String sql= "update member set name=? , pwd=?, gender=?, email1=?,email2=?,tel1=?, tel2=?,tel3=?,zipcode=?, addr1=?, addr2=? where id=?";
+		this.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,memberDTO.getName());
+			pstmt.setString(2,memberDTO.getPwd());
+			pstmt.setString(3,memberDTO.getGender());
+			pstmt.setString(4,memberDTO.getEmail1());
+			pstmt.setString(5,memberDTO.getEmail2());
+			pstmt.setString(6,memberDTO.getTel1());
+			pstmt.setString(7,memberDTO.getTel2());
+			pstmt.setString(8,memberDTO.getTel3());
+			pstmt.setString(9,memberDTO.getZipcode());
+			pstmt.setString(10,memberDTO.getAddr1());
+			pstmt.setString(11,memberDTO.getAddr2());
+			pstmt.setString(12, memberDTO.getId());
+			su=pstmt.executeUpdate();  //실행
+			System.out.println(su+"개의 행이 만들어졌습니다.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt!=null) pstmt.close();
+				if(conn!=null)conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return su;
 	}
 	
 	

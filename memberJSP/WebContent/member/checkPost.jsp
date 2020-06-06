@@ -1,9 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@page import="member.bean.ZipcodeDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="member.dao.MemberDAO"%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 	<%//데이터
 	request.setCharacterEncoding("UTF-8");
 	String sido = request.getParameter("sido");

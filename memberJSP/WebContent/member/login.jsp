@@ -11,7 +11,6 @@
     %>
     <%//DB
     LoginDAO loginDAO = LoginDAO.getInstance();
-    
     %>
     
 <!DOCTYPE html>

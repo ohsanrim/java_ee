@@ -133,7 +133,7 @@ public class MemberDAO {
 	}
 	public int modifyMember(MemberDTO memberDTO) {
 		int su =0;
-		String sql= "update member set name=? , pwd=?, gender=?, email1=?,email2=?,tel1=?, tel2=?,tel3=?,zipcode=?, addr1=?, addr2=? where id=?";
+		String sql= "update member set name=? , pwd=?, gender=?, email1=?,email2=?,tel1=?, tel2=?,tel3=?,zipcode=?, addr1=?, addr2=?, logtime=sysdate where id=?";
 		this.getConnection();
 		try {
 			pstmt = conn.prepareStatement(sql);

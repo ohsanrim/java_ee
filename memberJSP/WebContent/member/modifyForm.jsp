@@ -1,19 +1,29 @@
+<%@page import="member.dao.LoginDAO"%>
+<%@page import="member.bean.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.io.PrintWriter"%>
+
 <%
-	//데이터
-String name = request.getParameter("name");
-String id = request.getParameter("id");
-String gender = request.getParameter("gender");
-String email1 = request.getParameter("email1");
-String emailValue = request.getParameter("email2");
-String tel1 = request.getParameter("tel1");
-String tel2 = request.getParameter("tel2");
-String tel3 = request.getParameter("tel3");
-String zipcode = request.getParameter("zipcode");
-String addr1 = request.getParameter("addr1");
-String addr2 = request.getParameter("addr2");
+//데이터
+
+String name=(String)request.getSession().getAttribute("name");
+String id=(String)request.getSession().getAttribute("id");
+String pwd=(String)request.getSession().getAttribute("pwd");
+
+//DB
+LoginDAO loginDAO = LoginDAO.getInstance();
+MemberDTO memberDTO =loginDAO.checkLogin(id,pwd);
+String gender= memberDTO.getGender();
+String email1= memberDTO.getEmail1();
+String email2= memberDTO.getEmail2();
+String tel1= memberDTO.getTel1();
+String tel2= memberDTO.getTel2();
+String tel3= memberDTO.getTel3();
+String zipcode= memberDTO.getZipcode();
+String addr1= memberDTO.getAddr1();
+String addr2= memberDTO.getAddr2();
+
 %>
 <!DOCTYPE html>
 <html>
@@ -108,8 +118,8 @@ input, select {
 <script>
 window.onload = function () {
 	document.modifyForm.gender['<%=gender %>'].checked = true;
-	if ("<%=emailValue%>" != "") {
-    document.getElementById("email2").value = "<%=emailValue%>";
+	if ("<%=email1%>" != "") {
+    document.getElementById("email2").value = "<%=email1%>";
 	}
 	if ("<%=tel1%>" != "") {
 	document.getElementById("tel1").value = "<%=tel1%>";

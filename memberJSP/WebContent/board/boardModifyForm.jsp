@@ -1,5 +1,16 @@
+<%@page import="borad.bean.BoardDTO"%>
+<%@page import="board.dao.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+    <%
+    int seq=Integer.parseInt(request.getParameter("seq"));
+    int pg=Integer.parseInt(request.getParameter("pg"));
+    
+  //DB연동
+    BoardDAO boardDAO = BoardDAO.getInstance();
+    BoardDTO boardDTO = new BoardDTO();
+    boardDTO=boardDAO.getBoard(seq);
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,35 +30,37 @@ tr, td {
 </style>
 
 </head>
+
 <body>
-	<h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;글쓰기</h3>
-	<form name="boardForm" method="post" action="boardWrite.jsp">
+	<h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;글 수정</h3>
+	<form name="modifyForm" method="post" action="boardModify.jsp">
+	<input type="hidden" name="pg" value="<%=pg %>">
+	<input type="hidden" name="seq" value="<%=seq %>">
 		<table>
 			<tr>
 				<td style="width: 80px; height: 30px;" align="center"><font
 					color='red'>*</font>제목</td>
-				<td><input type="text" name="subject" id="subject"
-					placeholder="제목 입력"></td>
+				<td><input type="text" name="subject" id="subject" value="<%=boardDTO.getSubject()%>"
+					></td>
 			</tr>
 			<tr>
 				<td style="width: 80px; height: 30px;" align="center"><font
 					color='red'>*</font>내용</td>
 				<td style="" word_wrap:break-word;  word-break:break-all;><textarea
 						name="content" id="content" rows="12" cols="52"
-						placeholder="내용을 입력"></textarea></td>
+						><%=boardDTO.getContent()%></textarea></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
-				<input type="button" value="글작성"
-					onclick="checkBoardWriteForm()"> &emsp; 
+				<input type="submit" value="글수정"> &emsp; 
 				<input type="reset"
 					value="다시작성"> &emsp; 
-				<input type="button" value="글목록"
+				<input type="button" value="수정취소"
 					onclick="javascript:checkListForm()">
 				</td>
 			</tr>
 		</table>
-	</form>
+		</form>
 </body>
 <Script src="http://localhost:8080/memberJSP/js/board.js?ver=2"></Script>
 </html>

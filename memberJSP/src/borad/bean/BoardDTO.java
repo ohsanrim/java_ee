@@ -1,5 +1,7 @@
 package borad.bean;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -16,5 +18,5 @@ public class BoardDTO {
 	public int pseq;
 	public int reply;
 	public int hit;
-	public String logtime;
+	public Date logtime;
 }

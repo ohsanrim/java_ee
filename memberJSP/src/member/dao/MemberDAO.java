@@ -1,11 +1,15 @@
 package member.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 import member.bean.MemberDTO;
 import member.bean.ZipcodeDTO;
@@ -21,6 +25,17 @@ public class MemberDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
+	private DataSource ds;
+	//생성자
+	public MemberDAO(){
+		Context ctx;
+		try {
+			ctx = new InitialContext();
+			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 	//싱글톤
 	public static MemberDAO getInstance() {
 		if(instance==null) { //null인 경우는 맨 처음 생성될 때 딱 한번이기 때문에 한번만 생성되게 된다. 
@@ -33,8 +48,9 @@ public class MemberDAO {
 	public int writeMember(MemberDTO memberDTO) {
 		int su =0;
 		String sql= "insert into member values(?,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
-		this.getConnection();
+		
 		try {
+			conn=ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberDTO.getName());
 			pstmt.setString(2, memberDTO.getId());
@@ -65,8 +81,8 @@ public class MemberDAO {
 	public boolean isExistId(String id) {
 		boolean exist=false;
 		String sql="select count(*) as count from member where id=?";
-		this.getConnection();
 		try{
+			conn=ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			  rs=pstmt.executeQuery();
@@ -80,28 +96,13 @@ public class MemberDAO {
 		return exist;
 	}
 	//생성자
-	public MemberDAO(){
-		try {
-			Class.forName(driver); // 드라이버 생성
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
 	
-	//연결
-	public void getConnection() {
-		try {
-			conn = DriverManager.getConnection(url, userName, password); // 나의
-			System.out.println("오라클 접속 성공");  // 접속
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 	public ArrayList <ZipcodeDTO> getZipcodeList(String sido, String sigungu, String roadname){
 		ArrayList <ZipcodeDTO> list= new ArrayList<ZipcodeDTO> ();
 		String sql="select * from newzipcode where sido like ? and nvl(sigungu,0) like ? and roadname like ?";
-		this.getConnection();
+		
 		try{
+			conn=ds.getConnection();
 			  pstmt=conn.prepareStatement(sql); 
 			  pstmt.setString(1,"%"+sido+"%");
 			  pstmt.setString(2,"%"+sigungu+"%");
@@ -134,8 +135,9 @@ public class MemberDAO {
 	public int modifyMember(MemberDTO memberDTO) {
 		int su =0;
 		String sql= "update member set name=? , pwd=?, gender=?, email1=?,email2=?,tel1=?, tel2=?,tel3=?,zipcode=?, addr1=?, addr2=?, logtime=sysdate where id=?";
-		this.getConnection();
+		
 		try {
+			conn=ds.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1,memberDTO.getName());
 			pstmt.setString(2,memberDTO.getPwd());

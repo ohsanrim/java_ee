@@ -8,6 +8,7 @@
     String id = request.getParameter("id");
 	String pwd = request.getParameter("pwd");
     %>
+    
     <%//DB
     LoginDAO loginDAO = LoginDAO.getInstance();
     MemberDTO memberDTO = new MemberDTO(); 
@@ -28,9 +29,27 @@ System.out.println(memberDTO.getName());
 if(memberDTO==null||memberDTO.getName()==null) {
 	response.sendRedirect("loginFail.jsp");
 } else {
-    request.getSession().setAttribute("name", memberDTO.getName());
-    request.getSession().setAttribute("id", memberDTO.getId());
-    request.getSession().setAttribute("pwd", memberDTO.getPwd());
+	
+	//쿠키 생성
+	//Cookie cookie = new Cookie("memName", memberDTO.getName());
+    //cookie.setMaxAge(30*60); 
+	//response.addCookie(cookie);//클라이언트에게 보내기
+	//Cookie cookie2 = new Cookie("memId", memberDTO.getId());
+	//cookie2.setMaxAge(30*60); 
+	//response.addCookie(cookie2);//클라이언트에게 보내기
+	////Cookie cookie3 = new Cookie("memPwd", memberDTO.getPwd());
+	//cookie3.setMaxAge(30*60); 
+	//response.addCookie(cookie3);//클라이언트에게 보내기
+	//세션 생성
+	session.setAttribute("memName",memberDTO.getName());
+	session.setAttribute("memId",memberDTO.getId());
+	session.setAttribute("memPwd",memberDTO.getPwd());
+	session.setAttribute("memEmail1",memberDTO.getEmail1());
+	session.setAttribute("memEmail2",memberDTO.getEmail2());
+	//페이지 이동
+  	//request.getSession().setAttribute("name", memberDTO.getName());
+  	//request.getSession().setAttribute("id", memberDTO.getId());
+  	//request.getSession().setAttribute("pwd", memberDTO.getPwd());
   	response.sendRedirect("loginOk.jsp");%>
   		
 	<form method="get" action="modifyForm.jsp?">
@@ -44,5 +63,5 @@ if(memberDTO==null||memberDTO.getName()==null) {
 <%}%>
 
 </body><script> </script>
-<script>function writeForm(){ window.open('http://localhost:8080/memberJSP/member/writeForm.jsp'}</script>
+<script>function writeForm(){ window.open('http://localhost:8080/memberJSP/member/writeForm.jsp'); }</script>
 </html>

@@ -7,9 +7,9 @@
 <%
 //데이터
 
-String name=(String)request.getSession().getAttribute("name");
-String id=(String)request.getSession().getAttribute("id");
-String pwd=(String)request.getSession().getAttribute("pwd");
+String name=(String)session.getAttribute("memName");
+String id=(String)session.getAttribute("memId");
+String pwd=(String)session.getAttribute("memPwd");
 
 //DB
 LoginDAO loginDAO = LoginDAO.getInstance();
@@ -23,7 +23,6 @@ String tel3= memberDTO.getTel3();
 String zipcode= memberDTO.getZipcode();
 String addr1= memberDTO.getAddr1();
 String addr2= memberDTO.getAddr2();
-
 %>
 <!DOCTYPE html>
 <html>

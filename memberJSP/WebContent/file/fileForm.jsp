@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,11 +18,10 @@ tr, td {
 	height: 30px;
 }
 </style>
-
 </head>
 <body>
-	<h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;글쓰기</h3>
-	<form name="boardForm" method="post" action="boardWrite.jsp">
+	<form method="post" enctype="multipart/form-data"
+		action="fileUpload.jsp">
 		<table>
 			<tr>
 				<td style="width: 80px; height: 30px;" align="center"><font
@@ -32,22 +32,22 @@ tr, td {
 			<tr>
 				<td style="width: 80px; height: 30px;" align="center"><font
 					color='red'>*</font>내용</td>
-				<td style="" word_wrap:break-word;  word-break:break-all;><textarea
+				<td style=""word_wrap:break-word;  word-break:break-all;><textarea
 						name="content" id="content" rows="12" cols="52"
 						placeholder="내용을 입력"></textarea></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">
-				<input type="button" value="글작성"
-					onclick="checkBoardWriteForm()"> &emsp; 
-				<input type="reset"
-					value="다시작성"> &emsp; 
-				<input type="button" value="글목록"
-					onclick="javascript:checkListForm()">
-				</td>
+			<td colspan="2"><input type="file" name="upload1" size="50"></td>
+			
+			</tr>
+			<tr>
+			<td colspan="2"><input type="file" name="upload2" size="50"></td>
+			</tr>
+			<tr>
+			<td colspan="2" align="center" ><input type="submit" value="파일업로드"></td>
 			</tr>
 		</table>
+		
 	</form>
 </body>
-<Script src="http://localhost:8080/memberJSP/js/board.js?ver=2"></Script>
 </html>

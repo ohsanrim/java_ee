@@ -6,6 +6,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import member.bean.LoginDTO;
 import member.bean.MemberDTO;
 
@@ -20,6 +25,7 @@ public class LoginDAO {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
+	private DataSource ds;
 
 	public static LoginDAO getInstance() {
 		if (instance == null) { // null인 경우는 맨 처음 생성될 때 딱 한번이기 때문에 한번만 생성되게 된다.
@@ -32,28 +38,20 @@ public class LoginDAO {
 
 	// 생성자
 	public LoginDAO() {
+		Context ctx;
 		try {
-			Class.forName(driver); // 드라이버 생성
-		} catch (ClassNotFoundException e) {
+			ctx = new InitialContext();
+			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
+		} catch (NamingException e) {
 			e.printStackTrace();
 		}
 	}
-
-	// 연결
-	public void getConnection() {
-		try {
-			conn = DriverManager.getConnection(url, userName, password); // 나의
-			System.out.println("오라클 접속 성공"); // 접속
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	  public MemberDTO checkLogin(String id, String pwd){
 		  MemberDTO memberDTO= new MemberDTO();
 	  String sql="select * from member where id=? and pwd=?";
-	  getConnection();
+	  
 	  try{
+		  conn=ds.getConnection();
 	  pstmt=conn.prepareStatement(sql);
 	  pstmt.setString(1,id);
 	  pstmt.setString(2,pwd);
@@ -79,48 +77,5 @@ public class LoginDAO {
 	  return memberDTO;
 	  }
 	  
-//	
-//
-//	public ArrayList<MemberDTO> checkLogin() {
-//		int su = 0;
-//		this.getConnection();
-//		ArrayList<MemberDTO> ar = new ArrayList<MemberDTO>();
-//		String sql = "select * from member";
-//		try {
-//			pstmt = conn.prepareStatement(sql);
-//			rs = pstmt.executeQuery();
-//			while (rs.next()) {
-//				MemberDTO memberDTO = new MemberDTO();
-//				memberDTO.setName(rs.getString("name"));
-//				memberDTO.setId(rs.getString("id"));
-//				memberDTO.setPwd(rs.getString("pwd"));
-//				memberDTO.setGender(rs.getString("gender"));
-//				memberDTO.setEmail1(rs.getString("email1"));
-//				memberDTO.setEmail2(rs.getString("email2"));
-//				memberDTO.setTel1(rs.getString("tel1"));
-//				memberDTO.setTel2(rs.getString("tel2"));
-//				memberDTO.setTel3(rs.getString("tel3"));
-//				memberDTO.setZipcode(rs.getString("zipcode"));
-//				memberDTO.setAddr1(rs.getString("addr1"));
-//				memberDTO.setAddr2(rs.getString("addr2"));
-//				ar.add(memberDTO);
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			ar = null;
-//		} finally {
-//			try {
-//				if (rs != null)
-//					rs.close();
-//				if (pstmt != null)
-//					pstmt.close();
-//				if (conn != null)
-//					conn.close();
-//			} catch (SQLException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		return ar;
-//	}
 
 }

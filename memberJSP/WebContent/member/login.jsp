@@ -23,8 +23,8 @@
 </head>
 <body>
 <%
-//String name = loginDAO.checkLogin(id,pwd);
-memberDTO = loginDAO.checkLogin(id,pwd);
+	//String name = loginDAO.checkLogin(id,pwd);
+memberDTO = loginDAO.loginMember(id,pwd);
 System.out.println(memberDTO.getName());
 if(memberDTO==null||memberDTO.getName()==null) {
 	response.sendRedirect("loginFail.jsp");
@@ -50,7 +50,8 @@ if(memberDTO==null||memberDTO.getName()==null) {
   	//request.getSession().setAttribute("name", memberDTO.getName());
   	//request.getSession().setAttribute("id", memberDTO.getId());
   	//request.getSession().setAttribute("pwd", memberDTO.getPwd());
-  	response.sendRedirect("loginOk.jsp");%>
+  	response.sendRedirect("loginOk.jsp");
+%>
   		
 	<form method="get" action="modifyForm.jsp?">
 	<table>

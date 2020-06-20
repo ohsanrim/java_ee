@@ -5,7 +5,7 @@
 <%@page import="java.io.PrintWriter"%>
 
 <%
-//데이터
+	//데이터
 
 String name=(String)session.getAttribute("memName");
 String id=(String)session.getAttribute("memId");
@@ -13,7 +13,7 @@ String pwd=(String)session.getAttribute("memPwd");
 
 //DB
 LoginDAO loginDAO = LoginDAO.getInstance();
-MemberDTO memberDTO =loginDAO.checkLogin(id,pwd);
+MemberDTO memberDTO =loginDAO.loginMember(id,pwd);
 String gender= memberDTO.getGender();
 String email1= memberDTO.getEmail1();
 String email2= memberDTO.getEmail2();

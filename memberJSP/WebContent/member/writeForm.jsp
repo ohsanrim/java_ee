@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+Gender<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,7 +23,7 @@
 <body>
 <div border="1">
 <h3>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;회원가입</h3>
-<form name="writeForm" method="post" action="writeResult.jsp">
+<form name="writeForm" method="post" action="writeResult.do">
 <table border="1" >
 		<tr>
 			<td style="width:80px; height:30px;" align="center"><font color='red'>*</font>이 름</td>

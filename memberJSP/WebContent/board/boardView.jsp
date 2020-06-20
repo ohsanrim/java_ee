@@ -52,6 +52,7 @@ if(userId.equals(boardDTO.getId())){
 <input type="button" value="글수정" onclick="location.href='boardModifyForm.jsp?seq=<%=seq%>&pg=<%=pg%>'"><input type="button" value="글삭제" onclick="location.href='boardList.jsp?pg=<%=pg%>'"></td>
 <%} %>
 </tr>
+<
 
 
 

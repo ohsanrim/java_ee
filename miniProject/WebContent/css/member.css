@@ -1,0 +1,99 @@
+@charset "UTF-8";
+/*--top--*/
+.header{
+	width:100%;
+	display:flex;
+}
+.logo{
+	width:300px;
+	display: flex;
+	justify-content:center;
+	padding:0 auto;
+
+}
+.logo h3{
+	
+	padding-left:15px;
+}
+.navBar{
+	width:70%;
+	display:flex;
+	justify-content:flex-end;
+}
+.navBar div{
+	align-self:center;
+	float:right;
+	margin:20px;
+	
+}
+.navBar a{
+	color:black;
+}
+.logoImg{
+	width:50px;
+	color:gray;
+	cursor:pointer;
+}
+
+/*--left--*/
+.mainList{
+text-decoration:none;
+}
+
+/*--checkPost --*/
+.checkPostTable th{
+	background-color:#fffce3;
+	border:1px solid #6633cc;
+	Font-Family: 궁서체;
+	color:#6633cc;
+	font-size:10pt;
+}
+
+/*--writeForm--*/
+.writeFormTable {
+	background-color:#faf7b6;
+	Font-Family: 맑은 고딕;
+}
+
+/*--index--*/
+html, body{
+  margin:0;
+  padding:0;
+  width:100%;
+  font-family:quicksand;
+}
+.indexHeader{
+	background:#faf7b6;
+}
+.indexCenter{
+	background:#fffef0;
+}
+#paging{
+	cursor:pointer;
+}
+
+/*---footer--*/
+.footer{
+  padding:30px;;
+  display:flex;
+  background:#faf7b6;
+  color:gray;
+  font-weight: bold;
+}
+.logoFooter,.follow,.news{
+  margin:30px;
+  width:30%;;
+}
+#follow{
+  padding:10px;
+  width:50px;
+  height:50px;
+  cursor:pointer;
+}
+.copyright{
+  padding:30px;
+  font-size:10px;
+  background:#dbd993;
+  color:gray;
+  text-align:center;
+}

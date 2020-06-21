@@ -62,8 +62,8 @@
 					} ${zipcodeDTO.getRoadname() 
 					} ${zipcodeDTO.getBuildingname() }" />
 					<tr>
-						<td align="center">${zipcodeDTO.zipcode }</td>
-						<td colspan="3"><a id="addressA" href="#" onclick="checkPostClose('${zipcodeDTO.getZipcode() }','${address }')">${address }</a></td>
+						<td class="postListHead" align="center">${zipcodeDTO.zipcode }</td>
+						<td class="postList" colspan="3"><a class="subjectA" id="addressA" href="#" onclick="checkPostClose('${zipcodeDTO.getZipcode() }','${address }')">${address }</a></td>
 					</tr>
 				</c:forEach>
 		</table>

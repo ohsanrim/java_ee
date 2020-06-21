@@ -4,27 +4,27 @@
 <div class="header">
 	<div class="logo">
 		<img class="logoImg" src="../image/iu.jpg"/ onclick="location.href='../main/index.do'">
-		<h3>MINI PROJECT</h3>
+		<h3 style="font-family: 'Bebas Neue', cursive;">MINI PROJECT</h3>
 	</div>
-	<div class="navBar">
+	<div class="navBar" >
 		<c:if test="${sessionScope.memName==null }">
-			<div>
-				<a class="mainList" href="../member/writeForm.do">회원가입</a><br>
+			<div class="navBarA">
+				<a class="nav-link" href="../member/writeForm.do">회원가입</a><br>
 			</div>
 		</c:if>
 		<c:if test="${sessionScope.memName!=null }">
-			<div>
-				<a class="mainList" href="../member/logout.do">로그아웃</a><br>
+			<div class="navBarA">
+				<a class="nav-link" href="../member/logout.do">로그아웃</a><br>
 			</div>
-			<div>
-				<a class="mainList" href="../member/modifyForm.do">회원정보수정</a><br>
+			<div class="navBarA">
+				<a class="nav-link" href="../member/modifyForm.do">회원정보수정</a><br>
 			</div>
-			<div>
-				<a class="mainList" href="../board/boardWriteForm.do">글쓰기</a><br>
+			<div class="navBarA">
+				<a class="nav-link" href="../board/boardWriteForm.do">글쓰기</a><br>
 			</div>
 		</c:if>
-		<div>
-			<a class="mainList" href="../board/boardList.do?pg=1">목록</a><br>
+		<div class="navBarA">
+			<a class="nav-link" href="../board/boardList.do?pg=1">목록</a><br>
 		</div>
 	</div>
 </div>

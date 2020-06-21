@@ -100,30 +100,30 @@ public class BoardDAO {
 		
 		
 		ArrayList <BoardDTO> ar = new ArrayList<BoardDTO>();
-		int count=0;
 		try{
 			conn=ds.getConnection();
 			  pstmt=conn.prepareStatement(sql); 
 			  pstmt.setInt(1,startNum);
 			  pstmt.setInt(2,endNum);
 			  rs=pstmt.executeQuery();
-			  while(rs.next()){
-				  count++;
-				  BoardDTO boardDTO = new BoardDTO();
-				  boardDTO.setSeq(rs.getInt("seq"));
-				  boardDTO.setId(rs.getString("id"));
-				  boardDTO.setName(rs.getString("name"));
-				  boardDTO.setEmail(rs.getString("email"));
-				  boardDTO.setSubject(rs.getString("subject"));
-				  boardDTO.setContent(rs.getString("content"));
-				  boardDTO.setRef(rs.getInt("ref"));
-				  boardDTO.setLev(rs.getInt("lev"));
-				  boardDTO.setStep(rs.getInt("step"));
-				  boardDTO.setPseq(rs.getInt("pseq"));
-				  boardDTO.setReply(rs.getInt("reply"));
-				  boardDTO.setHit(rs.getInt("hit"));
-				  boardDTO.setLogtime(rs.getDate("logtime"));
-				  ar.add(boardDTO);
+			  if(rs.next()) {
+				  while(rs.next()){
+					  BoardDTO boardDTO = new BoardDTO();
+					  boardDTO.setSeq(rs.getInt("seq"));
+					  boardDTO.setId(rs.getString("id"));
+					  boardDTO.setName(rs.getString("name"));
+					  boardDTO.setEmail(rs.getString("email"));
+					  boardDTO.setSubject(rs.getString("subject"));
+					  boardDTO.setContent(rs.getString("content"));
+					  boardDTO.setRef(rs.getInt("ref"));
+					  boardDTO.setLev(rs.getInt("lev"));
+					  boardDTO.setStep(rs.getInt("step"));
+					  boardDTO.setPseq(rs.getInt("pseq"));
+					  boardDTO.setReply(rs.getInt("reply"));
+					  boardDTO.setHit(rs.getInt("hit"));
+					  boardDTO.setLogtime(rs.getDate("logtime"));
+					  ar.add(boardDTO);
+				  } 
 			  }
 			  } catch(SQLException e) {
 			 e.printStackTrace();

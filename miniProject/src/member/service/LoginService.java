@@ -16,7 +16,7 @@ public class LoginService implements CommandProcess {
 		//데이터
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
-		
+		System.out.println(id+" "+pwd);
 		//DB
 		LoginDAO loginDAO = LoginDAO.getInstance();
 	    MemberDTO memberDTO = loginDAO.loginMember(id,pwd);

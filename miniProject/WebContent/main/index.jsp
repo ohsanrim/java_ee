@@ -7,25 +7,28 @@
 <meta charset="UTF-8">
 <title>miniProject</title>
 <link rel="stylesheet" href="../css/member.css">
-<!-- 합쳐지고 최소화된 부트스트랩 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
 <!--Font Awesome-->
 <script src="https://kit.fontawesome.com/6c7d966087.js" crossorigin="anonymous"></script>
-<!--JQuery-->
-<script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <!--GoogleFont-->
-<link href="https://fonts.googleapis.com/css2?family=Sriracha&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Gamja+Flower&display=swap" rel="stylesheet">
+
 </head>
 <body>
 <table class="mainTable" cellspacing="0" width="100%" >
 <tr>
-<td class="indexHeader" colspan="2" align="center" style="height:100px; padding:0px auto;">
+<th class="indexHeader" colspan="2" align="center" style="height:100px; padding:0px auto;">
 <jsp:include page="../template/top.jsp"></jsp:include>
-</td>
+</th>
 
 </tr>
 <tr>
@@ -51,8 +54,15 @@
 </tr>
 </table>
 </body>
+<script>
+$(window).on("scroll",function(){
+	  if($(window).scrollTop()){
+	    $('th').addClass('black');
+	    $('a').addClass('black');
+	  } else {
+	    $('th').removeClass('black');
+	    $('a').removeClass('black');
+	  }
+});
+</script>
 </html>
-<!-- update board set hit=hit+1 where seq=글번호;
-boardView 에서 게속 f5 누르면 조회수 증가
-boardList로 갔다가 boardView로 들어오면 조회수 증가
-쿠키로 처리-->

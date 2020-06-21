@@ -8,7 +8,9 @@
 </head>
 <body>
 <div border="1">
-<h3>회원가입</h3>
+
+<h4>회원가입</h4>
+<br>
 <form name="writeForm" method="post" action="writeResult.do">
 <table class="writeFormTable" border="1" >
 		<tr>

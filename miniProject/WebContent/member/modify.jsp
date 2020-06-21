@@ -3,14 +3,9 @@
 <%@page import="member.bean.MemberDTO"%>
 <%@page import="member.dao.MemberDAO"%>
    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>회원정보 수정</title>
-</head>
-<body>
-	정보수정이 완료되었습니다!
-
-</body>
-</html>
+<script type="text/javascript">
+window.onload=function(){
+	alert("정보가 수정되었습니다.");
+	location.href="../main/index.do"
+}
+</script>

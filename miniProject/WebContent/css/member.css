@@ -1,30 +1,35 @@
 @charset "UTF-8";
-/*--top--*/
+h1,h2,h3,h4,h5,h6{
+	font-family: '나눔고딕';
+}
+
+/*----------top----------*/
 .header{
 	width:100%;
 	display:flex;
 }
 .logo{
+	margin:10px;
+	margin-left:30px;
 	width:300px;
 	display: flex;
 	justify-content:center;
 	padding:0 auto;
-
 }
 .logo h3{
-	
-	padding-left:15px;
+	width:120px;
+	margin:auto;
+	margin-left:30px;
 }
 .navBar{
 	width:70%;
 	display:flex;
 	justify-content:flex-end;
 }
-.navBar div{
-	align-self:center;
+.navBarA{
 	float:right;
-	margin:20px;
-	
+	display: inline-block;
+	padding-top:25px;
 }
 .navBar a{
 	color:black;
@@ -34,33 +39,61 @@
 	color:gray;
 	cursor:pointer;
 }
-
-/*--left--*/
-.mainList{
-text-decoration:none;
+th.black{
+	position:fixed;
+	width:100%;
+	background:#000;
+    background:rgba(0,0,0,0.6);
+    color:white;
+}
+a.black{
+	color:white;
+}
+a.black:hover {
+	color: #c8b900;
+	text-decoration: none;
+}
+/*----------login----------*/
+.loginFormTable{
+	width:100%;
+	margin-top:10px;
 }
 
-/*--checkPost --*/
+/*----------checkPost----------*/
 .checkPostTable th{
-	background-color:#fffce3;
-	border:1px solid #6633cc;
-	Font-Family: 궁서체;
-	color:#6633cc;
+	border-top: 1px solid #e3d09d;
+	border-bottom: 1px solid #e3d09d;
+	background:#ffebb8;
 	font-size:10pt;
 }
+.postList, .postListHead{
+	font-size:9pt;
+	border-bottom: 1px solid #e3d09d;
+}
+.postListHead{
+	background:#fff5db;
+}
 
-/*--writeForm--*/
+/*----------writeForm----------*/
 .writeFormTable {
 	background-color:#faf7b6;
 	Font-Family: 맑은 고딕;
 }
 
-/*--index--*/
+/*----------modifyForm----------*/
+.modifyFormTable{
+	Font-Family: 맑은 고딕;
+}
+
+/*----------index----------*/
 html, body{
   margin:0;
   padding:0;
   width:100%;
   font-family:quicksand;
+}
+#loginOk{
+	width:300px;
 }
 .indexHeader{
 	background:#faf7b6;
@@ -72,7 +105,7 @@ html, body{
 	cursor:pointer;
 }
 
-/*---footer--*/
+/*----------footer----------*/
 .footer{
   padding:30px;;
   display:flex;
@@ -96,4 +129,63 @@ html, body{
   background:#dbd993;
   color:gray;
   text-align:center;
+}
+
+
+/*----------boardWriteForm----------*/
+.boardFormTable td{
+	border-top: 1px solid #e3d09d;
+	border-bottom: 1px solid #e3d09d;
+}
+.tableHeader{
+	background:#fff5db;
+}
+
+/*----------boardList----------*/
+.listTable{
+	border-top: 1px solid #fffcc9;
+}
+.listTh{
+	background-color: #faf7b6;
+}
+#currentPaging {
+	border: 1px red solid;
+	text-decoration: underline;
+}
+
+#Paging {
+	color: black;
+	text-decoration: none;
+}
+
+.subjectA:link {
+	color: black;
+	text-decoration: none;
+}
+
+.subjectA:visited {
+	color black;
+	text-decoration: none;
+}
+
+.subjectA:hover {
+	color: #ff0080;
+	text-decoration: none;
+}
+
+.subjectA:active {
+	color: black;
+	text-decoration: none
+}
+
+/*----------boardview----------*/
+.viewTable td{
+	border-top: 1px solid #e3d09d;
+	border-bottom: 1px solid #e3d09d;
+}
+
+/*----------boardModifyForm----------*/
+.modifyFormTable td{
+	border-top: 1px solid #e3d09d;
+	border-bottom: 1px solid #e3d09d;
 }

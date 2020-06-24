@@ -1,4 +1,4 @@
-package borad.bean;
+package board.bean;
 
 import lombok.Data;
 

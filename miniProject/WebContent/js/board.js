@@ -10,8 +10,8 @@ function boardPaging(pg){
 	var keyword=document.listForm.keyword.value;
 	var searchOption=document.listForm.searchOption.value;
 	if(keyword==""){
-		location.href="boardList.do?pg="+pg;
+		location.href="boardList.do?pg="+encodeURI(pg);
 	} else {
-		location.href="boardSearch.do?pg="+pg+"&keyword="+keyword+"&searchOption="+searchOption;
+		location.href="boardSearch.do?pg="+﻿encodeURI(pg)+"&keyword="+encodeURI(keyword)+"&searchOption="+encodeURI(searchOption);
 	}
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardSQL">
+
+	<!-- BoardList -->
+	<select id="selectAll" parameterType="java.util.Map" resultType="board.bean.BoardDTO">
+		select * from (select rownum rn, tt.* from(select * from board order by ref desc, step asc)tt) where rn &gt;= #{startNum} and rn &lt;= #{endNum}
+	</select>
+	
+	<select id="getTotalA" resultType="java.lang.Integer">
+		select count(*) as count from board
+	</select>
+	
+	<!-- BoardSearch -->
+	<select id="getBoardList" parameterType="java.util.Map" resultType="board.bean.BoardDTO">
+		<if test="searchOption==1">
+			select * from (select rownum rn, tt.* from(select * from board where subject like '%'||#{keyword}||'%' order by ref desc, step asc)tt)  where rn &gt;= #{startNum} and rn &lt;= #{endNum}
+		</if>
+		<if test="searchOption==2">
+			select * from (select rownum rn, tt.* from(select * from board where id like '%'||#{keyword}||'%'  order by ref desc, step asc)tt)  where rn &gt;= #{startNum} and rn &lt;= #{endNum}
+		</if>
+	</select>
+		<select id="getTotalA1" parameterType="java.util.Map" resultType="Integer">
+		<if test="searchOption==1">
+         select count(*) as count from board where subject like '%'||#{keyword}||'%'
+      </if>
+      <if test="searchOption==2">
+         select count(*) as count from board where id like '%'||#{keyword}||'%'
+      </if>
+	</select>
+	
+	<!-- BoardWrite -->
+	<insert id="insertBoard" parameterType="board.bean.BoardDTO">
+		insert into board values(#{seq},#{id},#{name},#{email},#{subject},#{content},#{seq},#{lev},#{step},#{pseq},#{reply},#{hit},sysdate)
+	</insert>
+	<select id="seq" resultType="java.lang.Integer">
+		select seq_board.nextval from dual
+	</select>
+	
+	<!-- BoardModify -->
+	<update id="updateBoard" parameterType="board.bean.BoardDTO">
+		update board set subject =#{subject},content=#{content}, logtime=sysdate where seq=#{seq}
+	</update>
+	
+	<!-- HIT -->
+	<update id="countHit" parameterType="java.lang.Integer">
+		 update board set hit = hit + 1 where seq=#{seq}
+	</update>
+
+	<!-- BoardView -->
+	<select id="getBoard" parameterType="int" resultType="board.bean.BoardDTO">
+		select * from board where seq=#{seq}
+	</select>
+	
+	<!-- 중간점검 성공 -->
+
+	
+</mapper>

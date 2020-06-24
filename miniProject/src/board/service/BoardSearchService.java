@@ -3,6 +3,7 @@ package board.service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,9 +11,9 @@ import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
+import board.bean.BoardDTO;
+import board.bean.BoardPaging;
 import board.dao.BoardDAO;
-import borad.bean.BoardDTO;
-import borad.bean.BoardPaging;
 
 public class BoardSearchService implements CommandProcess {
 
@@ -43,12 +44,12 @@ public class BoardSearchService implements CommandProcess {
 		String currentTime = ft.format(current);
 		int pg = request.getParameter("pg")==null?1:(Integer.parseInt(request.getParameter("pg")));
 		// db
-		ArrayList<BoardDTO> list = new ArrayList<BoardDTO>();
+		
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		int endNum = pg * 5;
 		int startNum = endNum - 4;
 
-			list=boardDAO.getBoardList(startNum, endNum, keyword , searchOption);
+		List<BoardDTO> list=boardDAO.getBoardList(startNum, endNum, keyword , searchOption);
 
 		
 		//페이징 처리 - 1페이지 당 2개의 방명록 처리

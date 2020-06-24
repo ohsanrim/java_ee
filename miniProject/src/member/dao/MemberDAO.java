@@ -1,38 +1,38 @@
 package member.dao;
 
+import java.io.IOException;
+import java.io.Reader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
 import member.bean.MemberDTO;
 import member.bean.ZipcodeDTO;
 
 public class MemberDAO {
 	private static MemberDAO instance;  //싱글톤이기 때문에 선언할 때 instance라고 많이 선언함
-	
-	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private String userName = "c##java";
-	private String password = "bit";
-	
-	private Connection conn;
-	private PreparedStatement pstmt;
-	private ResultSet rs;
-	private DataSource ds;
+	private SqlSessionFactory sqlSessionFactory;
 	//생성자
 	public MemberDAO(){
-		Context ctx;
 		try {
-			ctx = new InitialContext();
-			ds = (DataSource)ctx.lookup("java:comp/env/jdbc/oracle");
-		} catch (NamingException e) {
+			Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);  //빌드를 통해서 초기값을 부여하는 경우가 많음
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
@@ -45,126 +45,50 @@ public class MemberDAO {
 		}
 		return instance;
 	}
+	
 	public int writeMember(MemberDTO memberDTO) {
-		int su =0;
-		String sql= "insert into member values(?,?,?,?,?,?,?,?,?,?,?,?,sysdate)";
-		
-		try {
-			conn=ds.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, memberDTO.getName());
-			pstmt.setString(2, memberDTO.getId());
-			pstmt.setString(3,memberDTO.getPwd());
-			pstmt.setString(4,memberDTO.getGender());
-			pstmt.setString(5,memberDTO.getEmail1());
-			pstmt.setString(6,memberDTO.getEmail2());
-			pstmt.setString(7,memberDTO.getTel1());
-			pstmt.setString(8,memberDTO.getTel2());
-			pstmt.setString(9,memberDTO.getTel3());
-			pstmt.setString(10,memberDTO.getZipcode());
-			pstmt.setString(11,memberDTO.getAddr1());
-			pstmt.setString(12,memberDTO.getAddr2());
-			su=pstmt.executeUpdate();  //실행
-			System.out.println(su+"개의 행이 만들어졌습니다.");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(pstmt!=null) pstmt.close();
-				if(conn!=null)conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int su=sqlSession.insert("memberSQL.writeMember",memberDTO);
+		sqlSession.commit();  //insert, delete, update 는 락이 걸려있기 때문에 반드시 commit을 진행해줘야 한다. 
 		return su;
 	}
 	public boolean isExistId(String id) {
-		boolean exist=false;
-		String sql="select count(*) as count from member where id=?";
-		try{
-			conn=ds.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			  rs=pstmt.executeQuery();
-			  if(rs.next()){
-				  exist=(rs.getInt("count")==1)?true:false;
-				  System.out.println(rs.getInt("count"));
-			}
-			  } catch(SQLException e) {
-			 e.printStackTrace();
-			  } 
-		return exist;
+		boolean isExisted=false;
+		SqlSession sqlSession= sqlSessionFactory.openSession();
+		MemberDTO memberDTO =sqlSession.selectOne("memberSQL.isExisted",id);
+		if(memberDTO!=null) isExisted=true;
+		System.out.println(memberDTO);
+		return isExisted;
 	}
 	//생성자
 	
-	public ArrayList <ZipcodeDTO> getZipcodeList(String sido, String sigungu, String roadname){
-		ArrayList <ZipcodeDTO> list= new ArrayList<ZipcodeDTO> ();
-		String sql="select * from newzipcode where sido like ? and nvl(sigungu,0) like ? and roadname like ?";
-		
-		try{
-			conn=ds.getConnection();
-			  pstmt=conn.prepareStatement(sql); 
-			  pstmt.setString(1,"%"+sido+"%");
-			  pstmt.setString(2,"%"+sigungu+"%");
-			  pstmt.setString(3,"%"+roadname+"%");
-			  rs=pstmt.executeQuery();
-			  
-			  while(rs.next()){
-				  ZipcodeDTO zipcodeDTO = new ZipcodeDTO();
-				  zipcodeDTO.setZipcode(rs.getString("zipcode"));
-				  zipcodeDTO.setSido(rs.getString("sido"));
-				  zipcodeDTO.setSigungu(rs.getString("sigungu")==null?"":rs.getString("sigungu"));
-				  zipcodeDTO.setYubmyundong(rs.getString("yubmyundong"));
-				  zipcodeDTO.setRi(rs.getString("ri")==null?"":rs.getString("ri"));
-				  zipcodeDTO.setRoadname(rs.getString("roadname"));
-				  zipcodeDTO.setBuildingname(rs.getString("buildingname")==null?"":rs.getString("buildingname"));
-				  list.add(zipcodeDTO);
-			  }
-			  } catch(SQLException e) {
-			 e.printStackTrace();
-			  } finally {
-					try {
-						if(pstmt!=null) pstmt.close();
-						if(conn!=null)conn.close();
-					} catch (SQLException e) {
-						e.printStackTrace();
-					}
-				}
+	public List <ZipcodeDTO> getZipcodeList(String sido, String sigungu, String roadname){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("sido", sido);
+		map.put("sigungu", sigungu);
+		map.put("roadname", roadname);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<ZipcodeDTO> list =sqlSession.selectList("memberSQL.getZipcodeList",map);
+		sqlSession.close();
 		return list;
 	}
 	public int modifyMember(MemberDTO memberDTO) {
-		int su =0;
-		String sql= "update member set name=? , pwd=?, gender=?, email1=?,email2=?,tel1=?, tel2=?,tel3=?,zipcode=?, addr1=?, addr2=?, logtime=sysdate where id=?";
-		
-		try {
-			conn=ds.getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,memberDTO.getName());
-			pstmt.setString(2,memberDTO.getPwd());
-			pstmt.setString(3,memberDTO.getGender());
-			pstmt.setString(4,memberDTO.getEmail1());
-			pstmt.setString(5,memberDTO.getEmail2());
-			pstmt.setString(6,memberDTO.getTel1());
-			pstmt.setString(7,memberDTO.getTel2());
-			pstmt.setString(8,memberDTO.getTel3());
-			pstmt.setString(9,memberDTO.getZipcode());
-			pstmt.setString(10,memberDTO.getAddr1());
-			pstmt.setString(11,memberDTO.getAddr2());
-			pstmt.setString(12, memberDTO.getId());
-			su=pstmt.executeUpdate();  //실행
-			System.out.println(su+"개의 행이 만들어졌습니다.");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				if(pstmt!=null) pstmt.close();
-				if(conn!=null)conn.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int su=sqlSession.update("memberSQL.modifyMember",memberDTO);
+		sqlSession.commit();  //insert, delete, update 는 락이 걸려있기 때문에 반드시 commit을 진행해줘야 한다. 
+		sqlSession.close();
 		return su;
 	}
+	public MemberDTO loginMember(String id, String pwd){
+		  //String sql="select * from member where id=? and pwd=?";
+			  Map<String, Object> map = new HashMap<String, Object>();
+				map.put("id", id);
+				map.put("pwd", pwd);
+				SqlSession sqlSession = sqlSessionFactory.openSession();
+				MemberDTO memberDTO =sqlSession.selectOne("memberSQL.loginMember",map);
+				sqlSession.close();
+				return memberDTO;
+		  }
 	
 	
 }

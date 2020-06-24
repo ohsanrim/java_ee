@@ -7,8 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
+import board.bean.BoardDTO;
 import board.dao.BoardDAO;
-import borad.bean.BoardDTO;
 
 public class BoardViewService implements CommandProcess {
 
@@ -30,7 +30,7 @@ public class BoardViewService implements CommandProcess {
 		request.setAttribute("display", "/board/boardView.jsp");
 
 		// 조회수 처리
-		Cookie[] ar = request.getCookies();
+		Cookie[] ar = request.getCookies();   //모든 쿠키 얻어오기
 	      String cookieName = null;
 	      String cookieValue = null;
 	      if(ar != null){

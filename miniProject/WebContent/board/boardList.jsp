@@ -18,9 +18,7 @@
 				<c:forEach var="data" items="${list }">
 					<tr>
 						<c:set var="logtime"
-							value="${ft.format(data.getLogtime()).equals(currentTime)
-					? today.format(data.getLogtime())
-					: past.format(data.getLogtime())}" />
+							value="${ft.format(data.getLogtime()).equals(currentTime)?today.format(data.getLogtime()):past.format(data.getLogtime())}" />
 
 						<td align='center'>${data.seq }</td>
 						<td align='center'>${data.id }</td>

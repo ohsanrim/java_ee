@@ -9,8 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
+import board.bean.BoardDTO;
 import board.dao.BoardDAO;
-import borad.bean.BoardDTO;
 
 public class BoardWriteService implements CommandProcess {
 
@@ -45,8 +45,7 @@ public class BoardWriteService implements CommandProcess {
 		boardDTO.setReply(0);
 		boardDTO.setHit(0);
 		//데이터 전송
-		int su = boardDAO.insertBoard(boardDTO);
-		System.out.println(su);
+		boardDAO.insertBoard(boardDTO);
 		request.setAttribute("display","/board/boardWrite.jsp");
 		return "/main/index.jsp";
 	}

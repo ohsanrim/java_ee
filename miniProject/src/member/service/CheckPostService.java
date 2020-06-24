@@ -1,10 +1,10 @@
 package member.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.control.CommandProcess;
 
@@ -21,7 +21,7 @@ public class CheckPostService implements CommandProcess {
 		String sigungu = request.getParameter("sigungu");
 		String roadname = request.getParameter("roadname");
 		//DB
-		ArrayList <ZipcodeDTO> list=new ArrayList<ZipcodeDTO>();
+		List <ZipcodeDTO> list=new ArrayList<ZipcodeDTO>();
 		if(sido!=null&& roadname!=null){
 			MemberDAO memberDAO = MemberDAO.getInstance();
 			list=memberDAO.getZipcodeList(sido, sigungu, roadname);

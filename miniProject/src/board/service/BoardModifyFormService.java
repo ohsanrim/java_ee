@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.control.CommandProcess;
 
+import board.bean.BoardDTO;
 import board.dao.BoardDAO;
-import borad.bean.BoardDTO;
 
 public class BoardModifyFormService implements CommandProcess {
 

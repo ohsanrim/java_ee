@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.control.CommandProcess;
 
 import member.bean.MemberDTO;
-import member.dao.LoginDAO;
+import member.dao.MemberDAO;
 
 public class ModifyFormService implements CommandProcess {
 
@@ -19,9 +19,8 @@ public class ModifyFormService implements CommandProcess {
 		String pwd=(String)session.getAttribute("memPwd");
 		
 		//DB
-		LoginDAO loginDAO = LoginDAO.getInstance();
-		MemberDTO memberDTO =new MemberDTO();
-		memberDTO=loginDAO.loginMember(id,pwd);
+		MemberDAO memberDAO= MemberDAO.getInstance();
+	    MemberDTO memberDTO = memberDAO.loginMember(id,pwd);
 		String gender= memberDTO.getGender();
 		String email1= memberDTO.getEmail1();
 		String email2= memberDTO.getEmail2();

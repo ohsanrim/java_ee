@@ -70,5 +70,14 @@ $(window).on("scroll",function(){
 	    $('a').removeClass('black');
 	  }
 });
+0
+function onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+	  console.log('Name: ' + profile.getName());
+	  console.log('Image URL: ' + profile.getImageUrl());
+	  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+	  location.href="../member/login.do?id="+profile.getId()+"&name="+profile.getName()+"&Image URL="+profile.getImageUrl()+"&email="+profile.getEmail();
+	}
 </script>
 </html>

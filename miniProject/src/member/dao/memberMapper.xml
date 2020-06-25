@@ -5,7 +5,12 @@
 <mapper namespace="memberSQL">
 
 	<insert id="writeMember" parameterType="member.bean.MemberDTO">
+	<if test="pwd!=null">
 		insert into member values(#{name},#{id},#{pwd},#{gender},#{email1},#{email2},#{tel1},#{tel2},#{tel3},#{zipcode},#{addr1},#{addr2},sysdate)
+	</if>
+	<if test="pwd==null">
+		insert into member(name,id, pwd, gender, email1, email2, tel1, logtime) values(#{name},#{id},nvl(#{pwd},'111'),#{gender},#{email1},#{email2},#{tel1},sysdate)
+	</if>
 	</insert>
 	<select id="isExisted"  parameterType="String" resultType="member.bean.MemberDTO">
 		select * from member where id=#{id}

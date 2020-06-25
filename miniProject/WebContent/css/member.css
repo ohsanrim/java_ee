@@ -58,12 +58,9 @@ a.black:hover {
 	width:100%;
 	margin-top:10px;
 }
-.kakaoLogin{
+
+.g-signin2{
 	margin:20px;
-}
-#kakao-profile{
-	height:100px;
-	color:100px;
 }
 /*----------checkPost----------*/
 .checkPostTable th{

@@ -20,9 +20,10 @@
 </table>
 <div style="margin-top:10px;">
 <input class="btn btn-outline-warning" type="button" value="목록" onclick="location.href='boardList.do?pg=${pg}'">
+<input class="btn btn-outline-warning" type="button" value="답글" onclick="location.href='boardReplyForm.do?pg=${pg}&pseq=${seq }'">
 <c:if test="${boardDTO.getName().equals(memName)}">
 <input class="btn btn-outline-warning" type="button" value="글수정" onclick="location.href='boardModifyForm.do?seq=${seq }&pg=${pg}'">
-<input class="btn btn-outline-warning" type="button" value="글삭제" onclick="location.href='boardList.do?pg=${pg}'">
+<input class="btn btn-outline-warning" type="button" value="글삭제" onclick="location.href='boardDelete.do?seq=${seq }'">
 </c:if>
 </div>
 

@@ -22,8 +22,10 @@
 
 						<td align='center'>${data.seq }</td>
 						<td align='center'>${data.id }</td>
-						<td><a
-							href="javascript:checkBoardLogin(${data.seq },${param.pg })">${data.subject }</a></td>
+						<td>
+						
+						<c:if test="${data.getSeq()!=data.getRef() }"><c:forEach var="i" begin="1" end="${data.lev}">&emsp;</c:forEach><img src="../image/reply.gif"></c:if>
+						<a href="javascript:checkBoardLogin(${data.seq },${param.pg })">${data.subject }</a></td>
 						<td style="font-size: 10px;" align='center'>${data.logtime }</td>
 						<td align='center'>${data.hit }</td>
 					</tr>

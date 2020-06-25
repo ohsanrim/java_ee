@@ -54,7 +54,36 @@
 		select * from board where seq=#{seq}
 	</select>
 	
-	<!-- 중간점검 성공 -->
+	<!-- BoardReplyForm -->
+<update id="boardReply1" parameterType="board.bean.BoardDTO">
+	update board set step=step+1 where ref= #{ref} and step>#{step}
+</update>
+<update id="boardReply2" parameterType="java.util.Map">
+	insert into board values(seq_board.nextval
+							,#{id}
+							,#{name}
+							,#{email}
+							,#{subject}
+							,#{content}
+							,#{ref}
+							,#{lev}
+							,#{step}
+							,#{pseq}
+							,0,0,sysdate)
+</update>
+<update id="boardReply3" parameterType="int">
+	update board set reply=reply+1 where seq=#{pseq}
+</update>
 
+<!-- BoardDelete -->
+<update id="boardDelete1" parameterType="int">
+	update board set reply=reply-1 where ref=(select ref from board where seq=#{seq}) and seq=#{seq}
+</update>
+<update id="boardDelete2" parameterType="int">
+	update board set subject=concat('[원글이 삭제된 답글]',subject) where pseq=#{seq}
+</update>
+<update id="boardDelete3" parameterType="int">
+	delete board where seq=#{seq}
+</update>
 	
 </mapper>

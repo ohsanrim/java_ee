@@ -245,4 +245,52 @@ public class BoardDAO {
 		System.out.println(su+"조회수 업!");
 	}
 
+	public void boardReply(Map<String, String> map) {
+		//그룹번gh: 원글의 그룹번호
+		//만약 똑같은 단계의 글이 들어오게 되면 새로 작성한 글번호 이후의 그 이전에 있던 번호들의 단계+1 를 해주어야 한다. 
+		//update board step=step+1 where ref= 원글ref and step>(select step from board where seq='119')
+		//글 번호		제목		그룹번호		단계		글순서		원글번호		답글수	
+		//seq	subject		ref			lev		step		pseq		reply
+		//10		과일		10			0		0			0			1
+		//11		야채		11			0		0			0			1
+		//12		사과 		10			1		1			10			1
+		//13		오이		11			1		1			11			0
+		//14		빨간 사과	10			2		2			12			0
+		/*
+		map.put("id",id);
+		map.put("name",name);
+		map.put("email",email);
+		map.put("subject",subject);
+		map.put("content",content);
+		map.put("pseq", pseq+"");   //원글번호*/
+		BoardDTO pDTO = this.getBoard(Integer.parseInt(map.get("pseq")));
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		//step(글순서) update
+		sqlSession.update("boardSQL.boardReply1",pDTO);
+		
+		//insert
+		map.put("ref",pDTO.getRef()+"");
+		map.put("lev",pDTO.getLev()+1+"");
+		map.put("step",pDTO.getStep()+1+"");
+		sqlSession.update("boardSQL.boardReply2",map);
+		
+		//reply(답글수) update
+		sqlSession.update("boardSQL.boardReply3",Integer.parseInt(map.get("pseq")));
+		
+		sqlSession.commit();
+		sqlSession.close();
+	}
+
+	public void boardDelete(int seq) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		//답글 수 감소(reply)
+		sqlSession.update("boardSQL.boardDelete1",seq);
+		//그 아래의 답글 앞에 [원글이 삭제된 삭제된 답글] 이라고 붙여주기
+		sqlSession.update("boardSQL.boardDelete2",seq);
+		//BB삭제
+		sqlSession.update("boardSQL.boardDelete3",seq);
+		sqlSession.commit();
+		sqlSession.close();
+	}
+
 }

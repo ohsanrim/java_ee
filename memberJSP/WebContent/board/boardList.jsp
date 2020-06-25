@@ -1,7 +1,7 @@
-<%@page import="borad.bean.BoardPaging"%>
+<%@page import="board.bean.BoardPaging"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
-<%@page import="borad.bean.BoardDTO"%>
+<%@page import="board.bean.BoardDTO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="board.dao.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

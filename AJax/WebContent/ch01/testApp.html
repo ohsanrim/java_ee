@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form name="testForm" method="get">
+		<table border="1">
+			<tr>
+				<td style="width: 80px; height: 30px;" align="center"><font
+					color='red'>*</font>이름</td>
+				<td><input type="text" name='name' id="name"></td>
+			</tr>
+			<tr>
+				<td style="width: 80px; height: 30px;" align="center"><font
+					color='red'>*</font>생년월일</td>
+				<td><input type="text" name='birth' id="birth"
+					placeholder="ex)1998/02/08"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+				<input type="button" value="보내기" onclick="testToServer()">
+				<input type="reset" value="취소">
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+<script>
+var httpRequest;
+function testToServer(){
+	var name = encodeURIComponent(document.testForm.name.value);
+	var birth = encodeURIComponent(document.testForm.birth.value);
+	httpRequest = new XMLHttpRequest();
+	httpRequest.onreadystatechange=viewMessage;
+	httpRequest.open("POST","test.jsp",true);
+	httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+	httpRequest.send("name="+name+"&birth="+birth);
+}
+function viewMessage(){
+	if(httpRequest.readyState==4){
+		if(httpRequest.status==200){
+			alert(httpRequest.responseText);
+		} else{
+			alert(httpRequest.status);
+		}
+	}
+}
+
+
+</script>
+</html>

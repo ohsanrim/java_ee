@@ -46,10 +46,10 @@ th.black{
     background:rgba(0,0,0,0.6);
     color:white;
 }
-a.black{
+div.navBarA a.black{
 	color:white;
 }
-a.black:hover {
+div.navBarA a.black:hover {
 	color: #c8b900;
 	text-decoration: none;
 }
@@ -167,7 +167,7 @@ html, body{
 }
 
 .subjectA:visited {
-	color black;
+	color:black;
 	text-decoration: none;
 }
 

@@ -64,10 +64,10 @@
 $(window).on("scroll",function(){
 	  if($(window).scrollTop()){
 	    $('th').addClass('black');
-	    $('a').addClass('black');
+	    $('div.navBarA a').addClass('black');
 	  } else {
 	    $('th').removeClass('black');
-	    $('a').removeClass('black');
+	    $('div.navBarA a').removeClass('black');
 	  }
 });
 0

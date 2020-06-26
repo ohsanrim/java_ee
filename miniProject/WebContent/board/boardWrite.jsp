@@ -5,11 +5,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<body>
+<script type="text/javascript">
+window.onload=function(){
+	alert("1개의 글이 수정되었습니다.");
+	location.href="boardList.do"
+}
+</script>
 
-	게시글이 등록되었습니다.
-	<input type="button" value="메인화면" onclick="location.href='../main/index.do'">
-	<input type="button" value="글 목록" onclick="checkListForm()">
-
-</body>
-<Script src="../js/board.js?ver=2"></Script>

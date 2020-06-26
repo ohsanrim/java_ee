@@ -76,14 +76,11 @@
 </update>
 
 <!-- BoardDelete -->
-<update id="boardDelete1" parameterType="int">
-	update board set reply=reply-1 where ref=(select ref from board where seq=#{seq}) and seq=#{seq}
-</update>
-<update id="boardDelete2" parameterType="int">
-	update board set subject=concat('[원글이 삭제된 답글]',subject) where pseq=#{seq}
-</update>
-<update id="boardDelete3" parameterType="int">
-	delete board where seq=#{seq}
-</update>
-	
+<delete id="boardDelete" parameterType="int">
+begin
+	update board set reply=reply-1 where ref=(select ref from board where seq=#{seq}) and seq=#{seq};
+	update board set subject=concat('[원글이 삭제된 답글]',subject) where pseq=#{seq};
+	delete board where seq=#{seq};
+end;
+</delete>
 </mapper>

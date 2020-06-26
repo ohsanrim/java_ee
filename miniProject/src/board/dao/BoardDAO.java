@@ -284,11 +284,9 @@ public class BoardDAO {
 	public void boardDelete(int seq) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		//답글 수 감소(reply)
-		sqlSession.update("boardSQL.boardDelete1",seq);
 		//그 아래의 답글 앞에 [원글이 삭제된 삭제된 답글] 이라고 붙여주기
-		sqlSession.update("boardSQL.boardDelete2",seq);
 		//BB삭제
-		sqlSession.update("boardSQL.boardDelete3",seq);
+		sqlSession.update("boardSQL.boardDelete",seq);
 		sqlSession.commit();
 		sqlSession.close();
 	}

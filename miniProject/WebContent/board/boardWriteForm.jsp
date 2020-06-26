@@ -32,9 +32,6 @@
 				<input class="btn btn-outline-warning" type="button" value="글목록"
 					onclick="javascript:checkListForm()">
 			</div>
-				
-				
-		
 	</form>
 </body>
 <Script src="../js/board.js?ver=2"></Script>

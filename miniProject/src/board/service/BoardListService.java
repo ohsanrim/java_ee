@@ -38,8 +38,8 @@ public class BoardListService implements CommandProcess {
 		// db
 		
 		BoardDAO boardDAO = BoardDAO.getInstance();
-		int endNum = pg * 5;
-		int startNum = endNum - 4;
+		int endNum = pg * 10;
+		int startNum = endNum - 9;
 
 		List<BoardDTO> list = boardDAO.selectAll(startNum, endNum);
 
@@ -49,7 +49,7 @@ public class BoardListService implements CommandProcess {
 		totalA = boardDAO.getTotalA(); // 총글수
 		boardPaging.setCurrentPage(pg);
 		boardPaging.setPageBlock(3);
-		boardPaging.setPageSize(5);
+		boardPaging.setPageSize(10);
 		boardPaging.setTotalA(totalA);
 		boardPaging.makePagingHTML();
 		request.setAttribute("boardPaging", boardPaging);

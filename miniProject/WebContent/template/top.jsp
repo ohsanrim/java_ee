@@ -23,8 +23,17 @@
 				<a class="nav-link" href="../board/boardWriteForm.do">글쓰기</a><br>
 			</div>
 		</c:if>
+		<c:if test="${sessionScope.memId=='admin' }">
+			<div class="navBarA">
+				<a class="nav-link" href="../board/imageBoardWriteForm.do">이미지 등록</a>
+			</div>
+		</c:if>
+		
 		<div class="navBarA">
 			<a class="nav-link" href="../board/boardList.do?pg=1">목록</a><br>
+		</div>
+		<div class="navBarA">
+			<a class="nav-link" href="../board/imageBoardList.do?pg=1">이미지목록</a><br>
 		</div>
 	</div>
 </div>

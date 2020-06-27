@@ -83,4 +83,19 @@ begin
 	delete board where seq=#{seq};
 end;
 </delete>
+<update id="imageBoardUpdate" parameterType="board.bean.ImageDTO">
+	insert into imageboard values(seq_imageboard.nextval
+							,#{imageId}
+							,#{imageName}
+							,#{imagePrice}
+							,#{imageQty}
+							,#{imageContent}
+							,#{image1}
+							,sysdate)
+</update>
+<select id="getImageBoard" resultType="board.bean.ImageDTO">
+		select * from imageboard order by seq
+	</select>
+
+
 </mapper>

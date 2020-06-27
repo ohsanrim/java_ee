@@ -23,6 +23,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import board.bean.BoardDTO;
+import board.bean.ImageDTO;
 
 public class BoardDAO {
 	private static BoardDAO instance;
@@ -289,6 +290,21 @@ public class BoardDAO {
 		sqlSession.update("boardSQL.boardDelete",seq);
 		sqlSession.commit();
 		sqlSession.close();
+	}
+
+	public void imageBoardUpdate(ImageDTO imageDTO) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("boardSQL.imageBoardUpdate",imageDTO);
+		sqlSession.commit();
+		sqlSession.close();
+		
+	}
+
+	public List<ImageDTO> getImageBoard() {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<ImageDTO> list = sqlSession.selectList("boardSQL.getImageBoard");
+		System.out.println(list.size() + "개의 항목을 찾았습니다.");
+		return list;
 	}
 
 }

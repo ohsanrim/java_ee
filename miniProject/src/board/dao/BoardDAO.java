@@ -300,11 +300,22 @@ public class BoardDAO {
 		
 	}
 
-	public List<ImageDTO> getImageBoard() {
+	public List<ImageDTO> getImageBoard(int startNum, int endNum) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("startNum", Integer.toString(startNum));
+		map.put("endNum", Integer.toString(endNum));
+		
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<ImageDTO> list = sqlSession.selectList("boardSQL.getImageBoard");
+		List<ImageDTO> list = sqlSession.selectList("boardSQL.getImageBoard", map);
 		System.out.println(list.size() + "개의 항목을 찾았습니다.");
 		return list;
+	}
+
+	public int getTotalImageBoard() {
+		int totalA=0;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		totalA = sqlSession.selectOne("boardSQL.getTotalImageBoard");
+		return totalA;
 	}
 
 }

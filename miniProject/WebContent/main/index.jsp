@@ -63,14 +63,13 @@
 <script>
 $(window).on("scroll",function(){
 	  if($(window).scrollTop()){
-	    $('th').addClass('black');
+	    $('th.indexHeader').addClass('black');
 	    $('div.navBarA a').addClass('black');
 	  } else {
-	    $('th').removeClass('black');
+	    $('th.indexHeader').removeClass('black');
 	    $('div.navBarA a').removeClass('black');
 	  }
 });
-0
 function onSignIn(googleUser) {
 	  var profile = googleUser.getBasicProfile();
 	  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.

@@ -10,7 +10,6 @@
 	height:150px;
 }
 </style>
-
 <form name="imageboardListForm" method="post" action="#">
 	<table class="imageBoardListTable" border="1" cellspacing="0" cellpadding="3" frame="hsides" rules="rows">
 		<tr>
@@ -25,7 +24,7 @@
 		<c:forEach var="imageboardDTO" items="${list }">
 			<tr>
 				<th align=center style="text-align:center;">${imageboardDTO.seq }</th>
-				<td align=center>
+				<td align=center style="width:200px;">
 					<img class="productImage" src="../storage/${imageboardDTO.image1 }">
 				</td>
 				<td align=center>${imageboardDTO.imageName }</td>
@@ -35,6 +34,12 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<div style="width: 600px; text-align: center;">${boardPaging.getPagingHTML() }</div>
 </form>
 </body>
+<script>
+function boardPaging(pg){
+		location.href="imageBoardList.do?pg="+encodeURI(pg);
+}
+</script>
 </html>

@@ -83,6 +83,7 @@ begin
 	delete board where seq=#{seq};
 end;
 </delete>
+<!-- ImageBoardWrite -->
 <update id="imageBoardUpdate" parameterType="board.bean.ImageDTO">
 	insert into imageboard values(seq_imageboard.nextval
 							,#{imageId}
@@ -93,9 +94,12 @@ end;
 							,#{image1}
 							,sysdate)
 </update>
-<select id="getImageBoard" resultType="board.bean.ImageDTO">
-		select * from imageboard order by seq
-	</select>
-
+<select id="getImageBoard" parameterType="java.util.Map" resultType="board.bean.ImageDTO">
+		select * from (select rownum rn, tt.* from(select * from imageboard order by seq)tt) where rn &gt;= #{startNum} and rn &lt;= #{endNum}
+</select>
+<!-- ImageBoardList -->
+<select id="getTotalImageBoard" resultType="java.lang.Integer">
+		select count(*) as count from imageboard
+</select>
 
 </mapper>

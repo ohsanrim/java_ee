@@ -9,6 +9,7 @@ import com.control.CommandProcess;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import board.bean.BoardPaging;
 import board.bean.ImageDTO;
 import board.dao.BoardDAO;
 
@@ -22,13 +23,14 @@ public class ImageBoardWriteService implements CommandProcess {
 		//업로드
 		MultipartRequest multi = new MultipartRequest(request,realFolder,5*1024*1024,"UTF-8", new DefaultFileRenamePolicy());  //똑같은 이름의 파일이 들어오면 파일 뒤에 번호를 붙여줌
 		
-		//데이터 받아오기
 		//사진 파일 업로드
 		String originalImage1=multi.getOriginalFileName("image1");
 		String fileName1 = multi.getFilesystemName("image1");
 		File file1= multi.getFile("image1");
 		long fileSize1= 0;
 		if(file1!=null)fileSize1=file1.length();
+		
+		
 		//DB
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		ImageDTO imageDTO = new ImageDTO();

@@ -16,7 +16,7 @@
 				<td style="width: 80px; height: 30px;" align="center"><font
 					color='red'>*</font>생년월일</td>
 				<td><input type="text" name='birth' id="birth"
-					placeholder="ex)1998/02/08"></td>
+					placeholder="ex)1990/01/02"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
@@ -25,6 +25,7 @@
 				</td>
 			</tr>
 		</table>
+		<div id="result"></div>
 	</form>
 </body>
 <script>
@@ -41,13 +42,14 @@ function testToServer(){
 function viewMessage(){
 	if(httpRequest.readyState==4){
 		if(httpRequest.status==200){
+			//let div = document.getElementById("result");
+			//div.innerText=httpRequest.responseText.trim();  //div 영역 속에 직접 넣으라는 의미
+			//div.innerHTML="<b><font color= blue>"+httpRequest.responseText.trim()+"</font></b>";  //html 로 인식
 			alert(httpRequest.responseText);
 		} else{
 			alert(httpRequest.status);
 		}
 	}
 }
-
-
 </script>
 </html>

@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <script type="text/javascript">
 window.onload=function(){
-	alert("로그인이 실패하셨습니다.");
-	location.href="../main/index.do";
+	alert("1개의 글이 업로드 되었습니다.");
+	location.href="../imageBoard/imageBoardList.do?pg=1"
 }
 </script>

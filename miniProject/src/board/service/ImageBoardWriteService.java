@@ -45,7 +45,7 @@ public class ImageBoardWriteService implements CommandProcess {
 		System.out.println("파일"+originalImage1);
 		System.out.println("파일이름"+originalImage1);
 		System.out.println("크기"+fileSize1);
-		request.setAttribute("display","/board/imageBoardWrite.jsp");
+		request.setAttribute("display","/imageBoard/imageBoardWrite.jsp");
 		return "/main/index.jsp";
 	}
 

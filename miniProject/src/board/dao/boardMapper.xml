@@ -94,12 +94,18 @@ end;
 							,#{image1}
 							,sysdate)
 </update>
-<select id="getImageBoard" parameterType="java.util.Map" resultType="board.bean.ImageDTO">
-		select * from (select rownum rn, tt.* from(select * from imageboard order by seq)tt) where rn &gt;= #{startNum} and rn &lt;= #{endNum}
+<select id="getImageBoardList" parameterType="java.util.Map" resultType="board.bean.ImageDTO">
+		select * from (select rownum rn, tt.* from(select * from imageboard order by seq DESC)tt) where rn &gt;= #{startNum} and rn &lt;= #{endNum}
 </select>
 <!-- ImageBoardList -->
 <select id="getTotalImageBoard" resultType="java.lang.Integer">
 		select count(*) as count from imageboard
 </select>
+<select id="getImageBoard" parameterType="int" resultType="board.bean.ImageDTO">
+		select * from imageboard where seq=#{seq}
+</select>
+<delete id="imageBoardDelete" parameterType="String">
+      delete from imageboard where seq in (${seq})
+   </delete>
 
 </mapper>

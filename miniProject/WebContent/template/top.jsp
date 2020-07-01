@@ -25,7 +25,7 @@
 		</c:if>
 		<c:if test="${sessionScope.memId=='admin' }">
 			<div class="navBarA">
-				<a class="nav-link" href="../board/imageBoardWriteForm.do">이미지 등록</a>
+				<a class="nav-link" href="../imageBoard/imageBoardWriteForm.do">이미지 등록</a>
 			</div>
 		</c:if>
 		
@@ -33,7 +33,7 @@
 			<a class="nav-link" href="../board/boardList.do?pg=1">목록</a><br>
 		</div>
 		<div class="navBarA">
-			<a class="nav-link" href="../board/imageBoardList.do?pg=1">이미지목록</a><br>
+			<a class="nav-link" href="../imageBoard/imageBoardList.do?pg=1">이미지목록</a><br>
 		</div>
 	</div>
 </div>

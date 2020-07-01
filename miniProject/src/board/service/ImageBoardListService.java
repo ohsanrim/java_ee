@@ -21,23 +21,23 @@ public class ImageBoardListService implements CommandProcess {
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		int pg = request.getParameter("pg") == null ? 1 : (Integer.parseInt(request.getParameter("pg")));
 		
-		int endNum = pg * 3;
-		int startNum = endNum - 2;
+		int endNum = pg * 6;
+		int startNum = endNum - 5;
 		int totalA = 0;
 		
 		BoardPaging boardPaging = new BoardPaging();
 		totalA = boardDAO.getTotalImageBoard(); // 총글수
 		boardPaging.setCurrentPage(pg);
 		boardPaging.setPageBlock(3);
-		boardPaging.setPageSize(3);
+		boardPaging.setPageSize(6);
 		boardPaging.setTotalA(totalA);
 		boardPaging.makePagingHTML();
 		request.setAttribute("boardPaging", boardPaging);
 		
 		//DB 
-		List<ImageDTO> list = boardDAO.getImageBoard(startNum, endNum);
+		List<ImageDTO> list = boardDAO.getImageBoardList(startNum, endNum);
 		request.setAttribute("list", list);
-		request.setAttribute("display","/board/imageBoardList.jsp");
+		request.setAttribute("display","/imageBoard/imageBoardList.jsp");
 		return "/main/index.jsp";
 	}
 }

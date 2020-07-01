@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <script type="text/javascript">
 window.onload=function(){
-	alert("1개의 글이 업로드 되었습니다.");
-	location.href="../board/imageBoardList.do?pg=1"
+	alert("삭제되었습니다.");
+	location.href="imageBoardList.do"
 }
 </script>

@@ -300,13 +300,13 @@ public class BoardDAO {
 		
 	}
 
-	public List<ImageDTO> getImageBoard(int startNum, int endNum) {
+	public List<ImageDTO> getImageBoardList(int startNum, int endNum) {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("startNum", Integer.toString(startNum));
 		map.put("endNum", Integer.toString(endNum));
 		
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<ImageDTO> list = sqlSession.selectList("boardSQL.getImageBoard", map);
+		List<ImageDTO> list = sqlSession.selectList("boardSQL.getImageBoardList", map);
 		System.out.println(list.size() + "개의 항목을 찾았습니다.");
 		return list;
 	}
@@ -316,6 +316,21 @@ public class BoardDAO {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		totalA = sqlSession.selectOne("boardSQL.getTotalImageBoard");
 		return totalA;
+	}
+
+	public ImageDTO getImageBoard(int seq) {
+		ImageDTO imageDTO = new ImageDTO();
+		String sql = "select * from imageboard where seq=?";
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		imageDTO = sqlSession.selectOne("boardSQL.getImageBoard",seq);
+		return imageDTO;
+	}
+
+	public void imageBoardDelete(String seq) {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		sqlSession.update("boardSQL.imageBoardDelete",seq);
+		sqlSession.commit();
+		sqlSession.close();
 	}
 
 }

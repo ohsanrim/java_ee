@@ -5,11 +5,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.control.CommandProcess;
 
-public class ImageBoardWriteFormService implements CommandProcess {
+import board.dao.BoardDAO;
+
+public class ImageBoardListDeleteService implements CommandProcess {
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) throws Throwable {
-		request.setAttribute("display","/imageBoard/imageBoardWriteForm.jsp");
+		String seq =request.getParameter("seq");
+		BoardDAO boardDAO = BoardDAO.getInstance();
+			boardDAO.imageBoardDelete(seq);
+		
+		request.setAttribute("display","../imageBoard/imageBoardListDelete.jsp");
 		return "/main/index.jsp";
 	}
 

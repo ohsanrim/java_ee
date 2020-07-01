@@ -9,7 +9,7 @@
 <body>
 	<h4>이미지 올리기</h4>
 	<br>
-	<form name="ImageBoardWriteForm" method="post" action="../board/imageBoardWrite.do" enctype="multipart/form-data"3>
+	<form name="ImageBoardWriteForm" method="post" action="../imageBoard/imageBoardWrite.do" enctype="multipart/form-data"3>
 		<!--boardWrite.do  -->
 		<table class="boardFormTable">
 			<tr>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+최근 4일간 최고기온: <span id="maxtemp"></span>
+</body>
+<script>
+var httpRequest;
+window.onload=function(){
+	loadList('getMaxTemperature.jsp');
+}/
+function loadList(url){
+	httpRequest=new XMLHttpRequest();
+	httpRequest.onreadystatechange=loadedList;
+	httpRequest.open("GET",url,true);
+	httpRequest.send("");
+}
+function loadedList(){
+	let maxtemp=document.getElementById("maxtemp");
+	if(httpRequest.readyState==4){
+		if(httpRequest.status==200){
+			let csvStr=httpRequest.responseText;
+			console.log(csvStr);
+			/*
+			let temperatureStrs=csv.split(",");
+			
+			let temperatures = new Array(temperatureStrs.length);
+			let max=temperatures[0];
+			for(var i=0;i<temperatureStrs.length;i++){
+				temperatures[i] = parseFloat(temperatureStrs[i]);
+			}
+			for(i=0;i<temperatures.length;i++){
+				if(temperatures[i]>max) max=temperatures[i];
+			}
+			let maxtemp = document.getElementById("maxtemp");
+			maxtemp.innerHTML="<strong>"+max+"</strong>"
+			*/
+			maxtemp.innerHTML=csvStr;
+		}
+	}
+	
+
+	
+}
+</script>
+</html>

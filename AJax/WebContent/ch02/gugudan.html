@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#gugudanResult{
+	visibility:hidden;
+}
+
+</style>
+</head>
+<body>
+<form name="gugudanForm">
+<table>
+<tr> 
+<td><input type="text" name="dan" placeholder="단 입력">
+<input type="button" value="결과" onclick="gugudanRequest()"></td>
+</tr>
+</table>
+<div style="border:1px solid red;"id="gugudanResult"></div>
+</form>
+
+
+</body>
+<script>
+var httpRequest;
+function gugudanRequest(){
+	var dan= document.gugudanForm.dan.value;
+	console.log(dan);
+		httpRequest = new XMLHttpRequest();
+		httpRequest.onreadystatechange=gugudanResive;
+		httpRequest.open("POST","getGugudan.jsp",true);
+		httpRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+		httpRequest.send("dan="+dan);
+}
+function gugudanResive(){
+	let gugudanResult=document.getElementById("gugudanResult");
+	if(httpRequest.readyState==4){
+		if(httpRequest.status==200){			
+			gugudanResult.innerHTML=httpRequest.responseText;
+		}
+	}
+	gugudanResult.style.visibility="visible";
+}
+</script>
+</html>

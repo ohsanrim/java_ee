@@ -6,3 +6,7 @@ div#displayArea{
 	border-style:dotted;
 	background-color:#ffcc00;
 }
+#tdNode{
+	width:65Px;
+	height:38px;
+}

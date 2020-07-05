@@ -9,6 +9,11 @@ function startMethod() {
 	httpRequest.send("");
 }
 function resultProcess() {
+	var item = document.getElementById("resultDisplay");
+	while (item.hasChildNodes() ) {
+		item.removeChild(item.firstChild);
+	}
+
 	if(httpRequest.readyState == 4){
 	      if(httpRequest.status == 200){
 	    	  let xmlDoc = httpRequest.responseXML;
@@ -35,9 +40,13 @@ function resultProcess() {
 	              let roomNumberValue = subject.getElementsByTagName("roomNumber").item(0).firstChild.nodeValue;
 	              
 	              var trNode = document.createElement("tr");
+	              trNode.setAttribute("id","trNode");
 	              var tdNode1=document.createElement("td");
+	              tdNode1.setAttribute("id","tdNode");
 	              var tdNode2=document.createElement("td");
+	              tdNode2.setAttribute("id","tdNode");
 	              var tdNode3=document.createElement("td");
+	              tdNode3.setAttribute("id","tdNode");
 	              
 	              var textNode1=document.createTextNode(codeNumberValue);
 	              var textNode2=document.createTextNode(titleNameValue);
@@ -53,6 +62,7 @@ function resultProcess() {
 	              
 	              //message += "<tr>"+"<td>"++"</td>"+"<td>"+titleNameValue+"</td>"+"<td>"+roomNumberValue+"</td>"+"<tr>"
 	              //document.getElementById("resultDisplay").innerHTML = message;
+	              
 	              document.getElementById("resultDisplay").appendChild(trNode);
 	      }
 	}

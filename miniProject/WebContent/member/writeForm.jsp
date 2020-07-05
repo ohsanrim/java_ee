@@ -5,30 +5,38 @@
 <head>
 <meta charset="UTF-8">
 <title >회원가입</title>
+<style>
+#writeForm div{
+font-size:8pt;
+font-weight:bold;
+color:red;
+}
+</style>
 </head>
 <body>
 <div border="1">
 
 <h4>회원가입</h4>
 <br>
-<form name="writeForm" method="post" action="writeResult.do">
+<form name="writeForm" id="writeForm" method="post" action="writeResult.do">
 <table class="writeFormTable" border="1" >
 		<tr>
 			<td style="width:80px; height:30px;" align="center"><font color='red'>*</font>이 름</td>
-			<td><input type="text" name='name' placeholder="이름입력"></td>
+			<td><input type="text" name='name' id="name" placeholder="이름입력"><div id="nameValueCheck"/></td>
 		</tr>
 		<tr>
 		<td align="center"><font color='red'>*</font>아이디</td>
-		<td ><input type="text" name='id' size="10" placeholder="아이디입력" onkeypress="changeId();">
-		<input type="button" value="중복체크" onclick="checkId()"><input type="hidden" name="idcheck" value="false" ></td>
+		<td ><input type="text" name='id' id="id" size="10" placeholder="아이디입력" onkeypress="changeId()">
+		<input type="button" value="중복체크" onclick="checkId()"><div id="idValueCheck"/>
+		<input type="hidden" name="idcheck" value="false" ></td>
 		</tr>
 		<tr>
 		<td align="center" ><font color='red'>*</font>비밀번호</td>
-		<td ><input type="password" name='pwd' size="10"></td>
+		<td ><input type="password" name="pwd" id="writePwd" size="10"><div id="pwdValueCheck"/></td>
 		</tr>
 		<tr>
 		<td align="center" ><font color='red'>*</font>재확인</td>
-		<td ><input type="password" name='repwd' size="10"></td>
+		<td ><input type="password" name='repwd' id="repwd" size="10"><div id="repwdValueCheck"/></td>
 		</tr>
 		<tr>
 			<td align="center"style="height:30px;">성 별</td>
@@ -66,8 +74,10 @@
 		</tr>
 		
 		<tr>
-			<td colspan="2" align="center"><input type="button" value="회원가입" onclick="checkWriteForm()"> &emsp; 
-   <input type="reset" value="다시작성"></td>
+			<td colspan="2" align="center">
+				<input type="button" value="회원가입" id="signUp" onClick="checkWriteForm()">
+   				<input type="reset" value="다시작성">
+   			</td>
 		</tr>
 	</table>
 </form>

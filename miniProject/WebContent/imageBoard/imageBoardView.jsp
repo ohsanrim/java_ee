@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<h4>상품 정보</h4>
+    pageEncoding="UTF-8"%>4>상품 정보</h4>
 <form class="imageBoardView" style="width:700px;">
 <table class="imageBoardViewTable">
 <tr>
@@ -26,20 +24,26 @@
 </table>
 <script>
 $(document).ready(function(){
-	$('#bigImg').click(function(){
+	$('#bigImg').click(function(){/*
 		let url = $('#imgView').attr('src');
 		let imgWindow = window.open(url, "", "width=500 height=500");
 		$(imgWindow.document).find($('img')).css('width','500');
-		//$(imgWindow.document.body).find($('img')).attr('src',url);
-		//$(imgWindow.document.body).html('<img width="500" height="500" src="'+url+'">');
-		 //let temp = imgWindow.document.getElementById("imgView");
-		// temp.attr("src",url);
-		//imgWindow.document.body.innerHTML='<img width="500" height="500" src="'+url+'">';
-		//imgWindow.document.body.innerHTML="<div>왜 안돼나 화딱지나게</div>";
-		console.log(imgWindow.document.getElementById("ddd").value);
+		*/
+		let newWindow = window.open("","","width=500 height=500");
+		let img = newWindow.document.createElement("img");
+		img.setAttribute("src","http://192.168.0.168:8080/miniProject/storage/${imageDTO.image1 }");
+		img.setAttribute("width","500");
+		img.setAttribute("height","500");
+		newWindow.document.body.appendChild(img);
 	});
 });
+
+
 
 </script>
 
 </form>
+
+
+
+ -->

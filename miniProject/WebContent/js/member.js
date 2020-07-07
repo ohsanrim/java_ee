@@ -2,7 +2,7 @@ function checkWriteForm(){
 	// -------------------회원가입 폼--------------------
 	//checkIdOk.jsp 와 checkIdFail.jsp 안에 제이쿼리 링크 넣어줘야 실행됨
 	//loginform의 id, pwd 와 writeForm의 id,pwd 가 충돌하는 문제 발생(pwd 값이 안읽혀짐)
-	//때문에 writeForm의 pwd 부분에 id="writePwd" 값 추가s
+	//때문에 writeForm의 pwd 부분에 id="writePwd" 값 추가
 	let name=$('[name=writeForm] [name=name]').val();
 	let id=$('[name=writeForm] [name=id]').val();
 	let idCheck= $('[name=writeForm] [name=idcheck]').val();
@@ -22,17 +22,28 @@ function checkWriteForm(){
 	} else if ( pwd != repwd ) {
 		$("#repwdValueCheck").text('비밀번호가 일치하지 않습니다.');
 	} else {
-		//$('[name=writeForm]').submit();
-		alert('로그인중');
+		$('[name=writeForm]').submit();
+		//alert('로그인중');
 	}
 	
 	//오류 메세지 제거
 	if(name!="") $('#nameValueCheck').empty();
-	if( id != "" && idCheck != "false" ) $("#idValueCheck").empty();
+	if( id != "" && idCheck != "false" ) $('idValueCheck').empty();
 	if( pwd != "" ) $("#pwdValueCheck").empty();
 	if( repwd != "" && pwd ==repwd ) $("#repwdValueCheck").empty();
 	
 }
+$('[name=writeForm] [name=id]').focusout(function(){
+	let id=$('[name=writeForm] [name=id]').val();
+	if(id ==''){
+		  $('#idValueCheck').text("먼저 아이디를 입력하세요");
+	      $('#idValueCheck').css('color','magenta');
+	      $('#pwd').focus();
+	} else {
+		window.open("checkId.do?id="+id,"","width=300 height=100 location=yes");
+	}
+	
+});
 
 function checkIdClose(id) {
 	$('[name=writeForm] [name=idcheck]',opener.document).val("true");

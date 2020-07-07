@@ -27,7 +27,7 @@ color:red;
 		<tr>
 		<td align="center"><font color='red'>*</font>아이디</td>
 		<td ><input type="text" name='id' id="id" size="10" placeholder="아이디입력" onkeypress="changeId()">
-		<input type="button" value="중복체크" onclick="checkId()"><div id="idValueCheck"/>
+		<!-- <input type="button" value="중복체크" onclick="checkId()"> --><div id="idValueCheck"/>
 		<input type="hidden" name="idcheck" value="false" ></td>
 		</tr>
 		<tr>

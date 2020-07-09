@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<input type="text" id="name" value="">
+<p id="disp"><string>값을 바꿔보시오</string></p>
+<input type="button" id="btn" value="버튼">
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$('#btn').click(function(){
+		//$('name').val('또치');
+		
+		//let txt = document.getElementById('disp').innerText;
+		//let txt =$('#disp').text();
+		//alert(txt);
+		
+		//let html = document.getElementById('disp').innerHTML;
+		//let html = $('#disp').html();
+		//alert(html);
+		//document.getELementById('disp').innerText="Have  good day";
+		$('#disp').text("Have a good day!!");
+		$('#disp').css('color','red');
+		$('#disp').css('font-weight','bold');
+		$('#disp').html("<b style='color:red;'>Have a nice day</b>");
+});
+</script>
+</html>

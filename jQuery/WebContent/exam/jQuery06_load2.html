@@ -1,0 +1,47 @@
++2<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+p{
+font-size:8pt;
+font-weight:bold;
+color:red;
+}
+.container{
+position:absolute;
+top:10px;
+left:100px;
+height:300px;
+border: 1px dotted red;
+width:600px;
+font-size:10pt;
+}
+
+</style>
+</head>
+<body>
+<a id="welcome" href="javascript:void(0)">처음화면</a><br><br>
+<a id="sample" href="#"> 샘플화면</a><br><br>
+
+<div id="result" class="container" style="font-size:10px;"></div>
+<div></div>
+</body>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#result').text('왼쪽 메뉴를 선택하세요');
+	$('#welcome').click(function(){
+		$('#result').text('Welcome jQuery');
+		$('#result').css('font-wight','bold');
+		$('#result').css('font-size','50pt');
+		$('#result').css('color','red');
+	});
+	$('#sample').click(function(){
+		$('#result').removeAttr('style');
+		$('#result').load('sample.txt');
+	});
+});
+</script>
+</html>

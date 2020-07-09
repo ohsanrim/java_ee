@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+.redColor{
+	color:red;
+}
+</style>
+
+</head>
+<body>
+<div id="mainMenu">
+<div id="naver" class="redColor">NAVER</div>
+<div id="daum" class="redColor">DAUM</div>
+<div id="google" class="redColor">GOOGLE</div>
+</div>
+</body><script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('#naver').bind('click',function(){
+	$('#mainMenu .redColor').removeClass('redColor');
+	$(this).addClass('redColor');
+	});
+	
+	$('#mainMenu div').bind('click',function(){
+		alert($(this).text());
+		$('#mainMenu .redColor').removeClass('redColor');
+		$(this).addClass('redColor');
+	});
+});
+</script>
+</html>

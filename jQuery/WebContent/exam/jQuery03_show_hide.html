@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<button id="btn1">slideUp</button>
+<button id="btn2">slideDown</button>&nbsp;&nbsp;&nbsp;
+
+<button id="btn3">fadeIn</button>
+<button id="btn4">fadeOut</button>&nbsp;&nbsp;&nbsp;
+
+<button id="btn5">slide toggle</button>
+<button id="btn6">fade toggle</button>
+<button id="btn7">toggle</button>
+
+<p>이미지</p>
+<img src="../image/IU23.gif" width="400" height="300">
+</body>
+<script type="text/javascript" src="../js/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+	$('#btn1').click(function(){
+		$('img').slideUp('fast');
+	});
+	$('#btn2').click(function(){
+		$('img').slideDown('fast');
+	});
+	$('#btn3').bind('click',function(){
+		$('img').fadeIn(1000);
+	});
+	$('#btn4').bind('click',function(){
+		$('img').fadeOut(1000);
+	});
+	$('#btn5').bind('click',function(){
+		$('img').slideToggle(1000);
+	});
+	$('#btn6').bind('click',function(){
+		$('img').fadeToggle(1000);
+	});
+	$('#btn7').bind('click',function(){
+		$('img').toggle(1000);
+	});
+});
+</script>
+</html>

@@ -136,3 +136,4 @@ private static GuestbookDAO instance;  //싱글톤이기 때문에 선언할 때
 		return totalA;
 	}
 }
+

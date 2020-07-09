@@ -31,7 +31,7 @@ $(document).ready(function(){
 		*/
 		let newWindow = window.open("","","width=500 height=500");
 		let img = newWindow.document.createElement("img");
-		img.setAttribute("src","http://192.168.0.168:8080/miniProject/storage/${imageDTO.image1 }");
+		img.setAttribute("src","http://192.168.0.153:8080/miniProject/storage/${imageDTO.image1 }");
 		img.setAttribute("width","500");
 		img.setAttribute("height","500");
 		newWindow.document.body.appendChild(img);

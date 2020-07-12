@@ -40,12 +40,7 @@ public class LoginServlet extends HttpServlet {
 		out.println("</head>");
 		out.println("<body>");
 		name = loginDAO.checkLogin(id,pwd);
-//			for(MemberDTO data:ar) {
-//				if(data.getId().equals(id)&&data.getPwd().equals(pwd)) {
-//					name=data.getName();
-//					break;
-//				}
-//			}
+
 			if(name==null) {
 				out.println("로그인에 실패하셨습니다.");
 				out.println("<input type='button' value='회원가입' onclick='writeForm()'>");

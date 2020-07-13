@@ -1,0 +1,259 @@
+html, body{
+  margin:0;
+  padding:0;
+  width:100%;
+}
+body{
+  font-family:quicksand;
+  color:#3b3b3b;
+}
+.wrapper{
+  background:white;
+  display:block;
+}
+header{
+  width:100%;
+  height:100vh;
+  background-repeat:no-repeat; background: 50% 50%;
+  background-image: url("../img/newyorkBg.jpg");
+  background-size: cover;
+}
+h1, h2, h3, h4, h5,h6{
+  font-family:'Sriracha', cursive;
+  color: gray;
+}
+a{
+  text-decoration:none;
+}
+.content{
+  margin:4em auto;
+  width:90%;
+  font-size:20px;
+  line-height:30px;
+  text-align:justify;
+}
+.user{
+  float:right;
+  margin:20px;
+  cursor:pointer;
+}
+.logo{
+  float:left;
+  margin:16px 36px;
+  font-weight:bold;
+  font-size:24px;
+}
+.logo a{
+	color:#9f7fba;
+}
+nav{
+  position:fixed;
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+}
+nav ul{
+  list-style:none;
+  width:100%;
+  overflow:hidden;
+  padding:0;
+  padding-bottom: 20px;
+  text-align:center;
+  margin:0;
+  transition: 1s;
+}
+nav.black{
+  background:#000;
+  background:rgba(0,0,0,0.6);
+}
+nav ul li{
+  display:inline-block;
+  width:100px;
+  padding: 25px 20px 5px 5px;
+}
+nav ul li a{
+  text-decoration:none;
+  color:#fff;
+  font-size:15px;
+}
+nav ul li a:hover{
+  color:gray;
+}
+
+.menu-icon{
+  position:absolute;
+  right:0;
+  width:100px;
+  text-align:right;
+  box-sizing: border-box;
+  padding:15px 24px;
+  cursor:pointer;
+  color:#fff;
+  display:none;
+}
+.footer{
+  padding:30px;;
+  display:flex;
+  background:black;
+  color:gray;
+  font-weight: bold;
+}
+.logoFooter,.follow,.contact{
+  margin:30px;
+  width:30%;;
+}
+#follow{
+  padding:10px;
+  width:50px;
+  height:50px;
+  cursor:pointer;
+}
+.copyright{
+  padding:30px;
+  font-size:10px;
+  background:black;
+  color:gray;
+  text-align:center;
+}
+/*post slider*/
+.post-slider{
+  width:70%;
+  margin:0px auto;
+  position:relative;
+}
+.post-slider .silder-title{
+  text-align:center;
+  margin:30px auto;
+}
+.post-slider .next{
+  position:absolute;
+  top:50%;
+  right:30px;
+  font-size:2em;
+  color:gray;
+  cursor: pointer;
+}
+.post-slider .prev{
+  position:absolute;
+  top:50%;
+  left:30px;
+  font-size:2em;
+  color:gray;
+    cursor: pointer;
+}
+.post-slider .post-wrapper{
+
+  width:84%;
+  height:350px;
+  margin:0px auto;
+  overflow: hidden;
+  padding:10px 0px 10px 0px;
+}
+.post-slider .post-wrapper .post{
+  width:300px;
+  height:300px;
+  margin:0px 10px;
+  display:inline-block;
+  background:white;
+  border-radius: 5px;
+}
+.post-slider .post-wrapper .post .post-info{
+  font-size:15px;
+  height:30%;
+  padding-left:10px;
+}
+.post-slider .post-wrapper .post .slider-image{
+  width:100%;
+  height:175px;
+  border-top-left-radius:5px;
+  border-top-right-radius:5px;
+}
+/*
+홈 밑에 있는 설명란
+*/
+
+@media(max-width: 580px){
+  .logo{
+    position:fixed;
+    top:0;
+    margin-top:16px;
+  }
+  .menu{
+    margin:0px;
+  }
+  .navbar{
+    max-height:0px;
+    display:flex;
+    flex-direction:column;
+    padding:0px;
+    width:100%;
+    background:#000;
+  }
+  nav ul{
+    align-items: center;
+    width:100%;
+    max-height:0px;
+    background:#000;
+    background:rgba(0,0,0,0.6);
+  }
+  nav.black ul{
+    background:#000;
+  }
+  .showing{
+    max-height:20em;
+  }
+  nav ul li{
+    flex-direction:column;
+    align-items:center;
+    width:100%;
+    padding-left: 0px;
+    text-align:center;
+  }
+  .user{
+    max-height:0em;
+    flex-direction:column;
+    align-items:center;
+    width:100%;
+    height:100px;
+    margin:0px;
+    background:#000;
+    text-align:center;
+  }
+  .userShow{
+    max-height:0em;
+    flex-direction:column;
+    align-items:center;
+    width:100%;
+    height:100px;
+    margin:0px;
+    background:#000;
+    text-align:center;
+  }
+  img{
+    margin:10px;
+    max-height:0px;
+  }
+  .menu-icon{
+    display:block;
+  }
+  p{
+    padding-right:50px;
+    padding-left:50px;
+  }
+  .footer{
+    padding:10px;
+    flex-direction: column;
+    background:black;
+    color:gray;
+    font-weight: bold;
+  }
+  .logoFooter,.follow,.contect{
+    margin:10px;
+    width:100%;;
+  }
+  #follow{
+    padding:10px;
+    width:10px;
+    height:10px;
+  }
+}
